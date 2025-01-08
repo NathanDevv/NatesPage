@@ -8,20 +8,28 @@ import Section from "./Section.astro";
   color="white"
   id="home"
 >
-  <div slot="footer">
+  <div slot="footer" class="flex justify-center">
     <a
       class="border-[3px] border-white bg-white/5 backdrop-blur-sm text-sm rounded font-medium text-white px-12 py-2 inline-block hover:bg-white hover:text-black transition-colors"
       href="#"
     >
-      Agenda Ahora!</a
-    >
+      Agenda Ahora!
+    </a>
   </div>
 
+  <!-- Video con ajustes para evitar el desplazamiento -->
   <video
     slot="background"
-    class="object-cover object-center w-full h-full"
+    class="absolute inset-0 object-cover w-full h-full"
     autoplay
     muted
     loop
-    src="/NatesPage/public/"></video>
+    src="../public/Video.mov"></video>
 </Section>
+
+<style>
+  /* Evitar barras de desplazamiento horizontales */
+  body {
+    overflow-x: hidden; /* Esto asegura que no haya desplazamiento horizontal */
+  }
+</style>

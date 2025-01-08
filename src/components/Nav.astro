@@ -6,129 +6,143 @@ import Logo from "./Logo.astro";
   id="landing-header"
   class="fixed top-0 z-40 flex items-center justify-between w-full px-10 py-3 text-white"
 >
-  <!-- Contenedor del logo, sin flex-grow para que se mantenga a la izquierda -->
-  <div class="flex">
+  <div class="flex flex-grow basis-0">
     <a href="./"><Logo /></a>
   </div>
 
-  <!-- Contenedor de las secciones, usa flex-grow para que ocupe el espacio restante -->
-  <nav class="flex flex-grow mx-6 xl:block sm:hidden">
+  <nav class="hidden xl:block sm:hidden">
     <ul
       class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
     >
-      <li><a href="#servicio-exterior">Servicio Exterior</a></li>
-      <li><a href="#servicio-interior">Servicio Interior</a></li>
-      <li><a href="#servicio-completo">Servicio Completo</a></li>
-      <li><a href="#galeria">Galería</a></li>
-      <li><a href="#powerwall">Agenda Ahora</a></li>
-      <li><a href="#accesorios">Contacto</a></li>
+      <li><a href="#model-s">Servicio Exterior</a></li>
+      <li><a href="#model-3">Servicio Interior</a></li>
+      <li><a href="#model-x">Servicio Completo</a></li>
+      <li><a href="#accesorios">Agenda Tu Servicio</a></li>
     </ul>
   </nav>
 
-  <!-- Contenedor de las secciones de la derecha -->
-  <nav class="flex justify-end space-x-4">
+  <nav class="flex justify-end flex-grow basis-0">
     <ul
       class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
     >
-      <li class="hidden xl:block sm:block"><a href="#">Tienda</a></li>
-      <li class="hidden xl:block sm:block"><a href="#">Cuenta</a></li>
-      <li><a id="menu-btn" href="#">Menú</a></li>
+      <li class="hidden xl:block sm:hidden"><a href="#">Galeria</a></li>
+      <li class="hidden xl:block sm:hidden"><a href="#">Reseñas</a></li>
+      <li><a id="menu-btn" href="#">Contacto</a></li>
     </ul>
   </nav>
-</header>
 
-<!-- Menu Modal -->
-<nav
-  id="modal-menu"
-  class="fixed top-0 bottom-0 left-0 right-0 flex flex-col bg-white xl:hidden"
-  style="flex-basis: 0;"
->
-  <button id="close-btn" class="flex justify-end w-screen p-5">
-    <img class="h-6 text-black" src="/close-icon.svg" alt="close image" />
-  </button>
-  <ul
-    class="flex flex-col mt-4 [&>li>a]:transition-colors [&>li]:m-3 [&>li>a]:justify-between [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-6 [&>li>a]:py-3 [&>li>a]:rounded-md [&>li>a]:w-full"
+  <nav
+    id="modal-menu"
+    class="fixed top-0 bottom-0 left-0 right-0 flex flex-col bg-white xl:hidden"
   >
-    <li>
-      <a class="hover:bg-slate-100" href="#servicio-exterior"
-        >Servicio Exterior</a
-      >
-    </li>
-    <li>
-      <a class="hover:bg-slate-100" href="#servicio-interior"
-        >Servicio Interior</a
-      >
-    </li>
-    <li>
-      <a class="hover:bg-slate-100" href="#servicio-completo"
-        >Servicio Completo</a
-      >
-    </li>
-    <li><a class="hover:bg-slate-100" href="#galeria">Galería</a></li>
-    <li><a class="hover:bg-slate-100" href="#powerwall">Agenda Ahora</a></li>
-    <li><a class="hover:bg-slate-100" href="#accesorios">Contacto</a></li>
-  </ul>
-</nav>
+    <button id="close-btn" class="flex justify-end w-screen p-5">
+      <img class="h-6 text-black" src="/close-icon.svg" alt="close image" />
+    </button>
+    <ul
+      class="flex flex-col mt-4 [&>li>a]:transition-colors [&>li]:m-3 [&>li>a]:justify-between [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-6 [&>li>a]:py-3 [&>li>a]:rounded-md [&>li>a]:w-full"
+    >
+      <li>
+        <a class="hover:bg-slate-100" href="#home">
+          Home <img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-slate-100" href="#model-s"
+          >Model S<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-slate-100" href="#model-3"
+          >Model 3<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-slate-100" href="#model-x"
+          >Model X<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-slate-100" href="#model-y"
+          >Model Y<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-slate-100" href="#powerwall"
+          >Powerwall<img
+            class="h-5"
+            alt="arrow icon"
+            src="/arrow-icon.svg"
+          /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-slate-100" href="#accesorios"
+          >Carga<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+    </ul>
+  </nav>
 
-<script>
-  const menuBtn = document.getElementById("menu-btn");
-  const modalMenu = document.querySelector("#modal-menu") as HTMLElement;
-  const closeBtn = document.querySelector("#close-btn") as HTMLElement;
+  <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const modalMenu = document.querySelector("#modal-menu") as HTMLElement;
+    const closeBtn = document.querySelector("#close-btn") as HTMLElement;
 
-  function toggleDropdownMenu() {
-    // Aquí estamos alternando el valor del display para mostrar/ocultar el menú
-    modalMenu.style.display =
-      modalMenu.style.display === "flex" ? "none" : "flex";
-  }
+    function toggleDropdownMenu() {
+      // Aquí estamos alternando el valor del display para mostrar/ocultar el menú
+      modalMenu.style.display =
+        modalMenu.style.display === "flex" ? "none" : "flex";
+    }
 
-  if (menuBtn) {
-    menuBtn.addEventListener("click", toggleDropdownMenu);
-  }
+    if (menuBtn) {
+      menuBtn.addEventListener("click", toggleDropdownMenu);
+    }
 
-  if (closeBtn) {
-    closeBtn.addEventListener("click", toggleDropdownMenu);
-  }
-</script>
+    if (closeBtn) {
+      closeBtn.addEventListener("click", toggleDropdownMenu);
+    }
+  </script>
 
-<script>
-  const listItem = document.querySelectorAll("#landing-header li");
+  <script>
+    const listItem = document.querySelectorAll("#landing-header li");
 
-  listItem.forEach((item) => {
-    item.addEventListener("mouseenter", () => {
-      const { left, top, width, height } = (
-        item as HTMLElement
-      ).getBoundingClientRect();
+    listItem.forEach((item) => {
+      item.addEventListener("mouseenter", () => {
+        const { left, top, width, height } = (
+          item as HTMLElement
+        ).getBoundingClientRect();
 
-      (item as HTMLElement).style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+        (item as HTMLElement).style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+      });
+
+      item.addEventListener("mouseleave", () => {
+        (item as HTMLElement).style.backgroundColor = "transparent";
+      });
     });
+  </script>
 
-    item.addEventListener("mouseleave", () => {
-      (item as HTMLElement).style.backgroundColor = "transparent";
-    });
-  });
-</script>
+  <script>
+    const headerEl = document.querySelector("#landing-header");
 
-<script>
-  const headerEl = document.querySelector("#landing-header");
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px", // en cuanto se vea el elemento
+      threshold: 0.9, // porcentaje de visibilidad
+    };
 
-  const observerOptions = {
-    root: null,
-    rootMargin: "0px", // en cuanto se vea el elemento
-    threshold: 0.9, // porcentaje de visibilidad
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      const { isIntersecting } = entry;
-      if (isIntersecting) {
-        const color = entry.target.getAttribute("data-header-color");
-        if (color) {
-          (headerEl as HTMLElement).style.color = color;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const { isIntersecting } = entry;
+        if (isIntersecting) {
+          const color = entry.target.getAttribute("data-header-color");
+          if (color) {
+            (headerEl as HTMLElement).style.color = color;
+          }
         }
-      }
-    });
-  }, observerOptions);
+      });
+    }, observerOptions);
 
-  const sectionElements = document.querySelectorAll(".landing-section");
-  sectionElements.forEach((section) => observer.observe(section));
-</script>
+    const sectionElements = document.querySelectorAll(".landing-section");
+    sectionElements.forEach((section) => observer.observe(section));
+  </script>
+</header>
