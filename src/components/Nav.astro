@@ -1,171 +1,32 @@
 ---
 import Logo from "./Logo.astro";
+import ModalMenu from "./ModalMenu.astro";
+import MenuPrincipal from "./MenuPrincipal.astro";
+import MenuDerecha from "./MenuDerecha.astro";
 ---
 
 <header
   id="landing-header"
   class="fixed top-0 z-40 flex items-center justify-between w-full px-10 py-3 text-white"
+  data-header-color="blue"
 >
   <div class="flex flex-grow basis-0">
     <a href="./"><Logo /></a>
   </div>
 
-  <!-- Menú principal -->
-  <nav class="hidden xl:block sm:hidden">
-    <ul
-      class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
-    >
-      <li>
-        <a
-          class="flex items-center justify-between transition-colors duration-300 hover:text-black menu-item group hover:bg-slate-100"
-          href="#exterior"
-        >
-          Servicio Exterior
-          <img
-            class="h-5 transition-all duration-500 transform group-hover:translate-x-10 group-hover:grayscale-0 grayscale"
-            alt="Icono de Burbuja Azul"
-            src="../public/BurbujaAzul.png"
-          />
-        </a>
-      </li>
-      <li>
-        <a
-          class="flex items-center justify-between transition-colors duration-300 hover:text-black menu-item group hover:bg-slate-100"
-          href="#interior"
-        >
-          Servicio Interior
-          <img
-            class="h-5 transition-all duration-500 transform group-hover:translate-x-10 group-hover:grayscale-0 grayscale"
-            alt="Icono de Burbuja Azul"
-            src="../public/BurbujaAzul.png"
-          />
-        </a>
-      </li>
-      <li>
-        <a
-          class="flex items-center justify-between transition-colors duration-300 hover:text-black menu-item group hover:bg-slate-100"
-          href="#completo"
-        >
-          Servicio Completo
-          <img
-            class="h-5 transition-all duration-500 transform group-hover:translate-x-10 group-hover:grayscale-0 grayscale"
-            alt="Icono de Burbuja Azul"
-            src="../public/BurbujaAzul.png"
-          />
-        </a>
-      </li>
-      <li>
-        <a
-          class="flex items-center justify-between transition-colors duration-300 hover:text-black menu-item group hover:bg-slate-100"
-          href="#agenda"
-        >
-          Agenda Tu Servicio
-          <img
-            class="h-5 transition-all duration-500 transform group-hover:translate-x-10 group-hover:grayscale-0 grayscale"
-            alt="Icono de Burbuja Azul"
-            src="../public/BurbujaAzul.png"
-          />
-        </a>
-      </li>
-    </ul>
-  </nav>
+  <MenuPrincipal />
 
-  <!-- Menú desplegable para dispositivos móviles -->
-  <nav class="flex justify-end flex-grow basis-0">
-    <ul
-      class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
-    >
-      <li class="hidden xl:block sm:hidden">
-        <a class="hover:bg-slate-100 hover:text-black" href="#galeria"
-          >Galeria</a
-        >
-      </li>
-      <li class="hidden xl:block sm:hidden">
-        <a class="hover:bg-slate-100 hover:text-black" href="#resenas"
-          >Reseñas</a
-        >
-      </li>
-      <li>
-        <a class="hover:bg-slate-100 hover:text-black" id="menu-btn" href="#"
-          >Menu</a
-        >
-      </li>
-    </ul>
-  </nav>
+  <!-- Nav 2do -->
+  <MenuDerecha />
 
-  <nav
-    id="modal-menu"
-    class="fixed top-0 bottom-0 left-0 right-0 flex-col hidden bg-white xl:hidden"
-  >
-    <button id="close-btn" class="flex justify-end w-screen p-5">
-      <img
-        class="h-6 text-black"
-        src="../public/close-icon.svg"
-        alt="close image"
-      />
-    </button>
-    <ul
-      class="flex flex-col mt-4 [&>li>a]:font-size:20px [&>li>a]:transition-colors [&>li]:m-3 [&>li>a]:justify-between [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-6 [&>li>a]:py-3 [&>li>a]:rounded-md [&>li>a]:w-full"
-    >
-      <li>
-        <a class="menu-item hover:bg-slate-100" href="#home">
-          Inicio
-          <img
-            class="h-5 transition-transform duration-300"
-            alt="arrow icon"
-            src="../public/Burbuja.png"
-          />
-        </a>
-      </li>
-      <li>
-        <a class="menu-item hover:bg-slate-100" href="#exterior">
-          Servicio Exterior
-          <img
-            class="h-5 transition-transform duration-300"
-            alt="arrow icon"
-            src="../public/Burbuja.png"
-          />
-        </a>
-      </li>
-      <li>
-        <a class="menu-item hover:bg-slate-100" href="#interior">
-          Servicio Interior
-          <img
-            class="h-5 transition-transform duration-300"
-            alt="arrow icon"
-            src="../public/Burbuja.png"
-          />
-        </a>
-      </li>
-      <li>
-        <a class="menu-item hover:bg-slate-100" href="#completo">
-          Servicio Completo
-          <img
-            class="h-5 transition-transform duration-300"
-            alt="arrow icon"
-            src="../public/Burbuja.png"
-          />
-        </a>
-      </li>
-      <li>
-        <a class="menu-item hover:bg-slate-100" href="#agenda">
-          Agenda
-          <img
-            class="h-5 transition-transform duration-300"
-            alt="arrow icon"
-            src="../public/Burbuja.png"
-          />
-        </a>
-      </li>
-    </ul>
-  </nav>
+  <ModalMenu />
 
   <style>
-    .arrow-icon {
+    .burbuja-icon {
       transform: translateX(0); /* Posición inicial */
     }
 
-    .menu-item.active .arrow-icon {
+    .menu-item.active .burbuja-icon {
       transform: translateX(10px); /* Desplaza la flecha hacia la derecha */
     }
 
@@ -173,79 +34,85 @@ import Logo from "./Logo.astro";
       position: relative;
       overflow: hidden;
     }
+    .translate-x-full {
+      transform: translateX(100%);
+    }
+
+    .translate-x-0 {
+      transform: translateX(0);
+    }
+
+    #modal-menu {
+      transition: transform 0.3s ease-in-out;
+    }
   </style>
 
   <script>
     const menuBtn = document.getElementById("menu-btn");
-    const modalMenu = document.querySelector("#modal-menu") as HTMLElement;
-    const closeBtn = document.querySelector("#close-btn") as HTMLElement;
-
-    // Función para mostrar u ocultar el menú desplegable
-    function toggleDropdownMenu() {
-      modalMenu.style.display =
-        modalMenu.style.display === "flex" ? "none" : "flex";
-    }
-
-    if (menuBtn) {
-      menuBtn.addEventListener("click", toggleDropdownMenu);
-    }
-
-    if (closeBtn) {
-      closeBtn.addEventListener("click", toggleDropdownMenu);
-    }
-
-    // Cambiar color del encabezado al hacer scroll
+    const closeBtn = document.querySelector("#close-btn");
+    const modalMenu = document.querySelector("#modal-menu");
     const headerEl = document.querySelector("#landing-header");
-    const threshold = 50; // Límite en píxeles para el cambio
 
-    if (headerEl) {
-      window.addEventListener("scroll", () => {
-        const scrollY = window.scrollY;
-        if (scrollY > threshold) {
-          headerEl.classList.add("bg-black", "shadow-md");
-          headerEl.classList.remove("bg-transparent");
-        } else {
-          headerEl.classList.add("bg-transparent");
-          headerEl.classList.remove("bg-black", "shadow-md");
+    // Verificar que modalMenu no sea null
+    if (modalMenu) {
+      // Función para alternar el menú
+      const toggleMenu = () => {
+        modalMenu.classList.toggle("translate-x-0"); // Mostrar el menú
+        modalMenu.classList.toggle("translate-x-full"); // Ocultar el menú
+      };
+
+      // Abrir el menú al hacer clic en el botón de menú
+      menuBtn?.addEventListener("click", (e) => {
+        e.preventDefault();
+        toggleMenu();
+      });
+
+      // Cerrar el menú al hacer clic en el botón de cerrar
+      closeBtn?.addEventListener("click", (e) => {
+        e.preventDefault();
+        toggleMenu();
+      });
+
+      // Opcional: cerrar el menú al hacer clic fuera de él
+      document.addEventListener("click", (e) => {
+        const target = e.target as HTMLElement | null; // Asegura que sea un HTMLElement
+        if (target && !modalMenu.contains(target) && target !== menuBtn) {
+          modalMenu.classList.add("translate-x-full"); // Asegura que se cierre
+          modalMenu.classList.remove("translate-x-0");
         }
       });
     }
 
-    // Agregar fondo temporal al pasar el cursor por los elementos del menú
-    const listItem = document.querySelectorAll("#landing-header li");
-
-    listItem.forEach((item) => {
-      const listItemElement = item as HTMLElement;
-      listItemElement.addEventListener("mouseenter", () => {
-        listItemElement.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+    // Cambiar estilos del header en scroll
+    if (headerEl) {
+      const threshold = 50;
+      window.addEventListener("scroll", () => {
+        const isScrolled = window.scrollY > threshold;
+        headerEl.classList.toggle("bg-black", isScrolled);
+        headerEl.classList.toggle("shadow-md", isScrolled);
+        headerEl.classList.toggle("bg-transparent", !isScrolled);
       });
+    }
 
-      listItemElement.addEventListener("mouseleave", () => {
-        listItemElement.style.backgroundColor = "transparent";
-      });
-    });
+    // Cambiar color del header con Intersection Observer
+    const observerOptions = { root: null, rootMargin: "0px", threshold: 0.9 };
+    if (headerEl) {
+      const changeHeaderColor = (color: string) => {
+        (headerEl as HTMLElement).style.color = color || "";
+      };
 
-    // Cambiar el color del encabezado en secciones específicas usando Intersection Observer
-    const observerOptions = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.9,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const color = entry.target.getAttribute("data-header-color");
-          if (color) {
-            if (headerEl) {
-              (headerEl as HTMLElement).style.color = color;
-            }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const color = entry.target.getAttribute("data-header-color") || "";
+            changeHeaderColor(color);
           }
-        }
-      });
-    }, observerOptions);
+        });
+      }, observerOptions);
 
-    const sectionElements = document.querySelectorAll(".landing-section");
-    sectionElements.forEach((section) => observer.observe(section));
+      document
+        .querySelectorAll(".landing-section")
+        .forEach((section) => observer.observe(section));
+    }
   </script>
 </header>
