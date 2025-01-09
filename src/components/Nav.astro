@@ -10,30 +10,92 @@ import Logo from "./Logo.astro";
     <a href="./"><Logo /></a>
   </div>
 
+  <!-- Menú principal -->
   <nav class="hidden xl:block sm:hidden">
     <ul
       class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
     >
-      <li><a href="#exterior">Servicio Exterior</a></li>
-      <li><a href="#interior">Servicio Interior</a></li>
-      <li><a href="#completo">Servicio Completo</a></li>
-      <li><a href="#agenda">Agenda Tu Servicio</a></li>
+      <li>
+        <a
+          class="flex items-center justify-between transition-colors duration-300 hover:text-black menu-item group hover:bg-slate-100"
+          href="#exterior"
+        >
+          Servicio Exterior
+          <img
+            class="h-5 transition-all duration-500 transform group-hover:translate-x-10 group-hover:grayscale-0 grayscale"
+            alt="Icono de Burbuja Azul"
+            src="../public/BurbujaAzul.png"
+          />
+        </a>
+      </li>
+      <li>
+        <a
+          class="flex items-center justify-between transition-colors duration-300 hover:text-black menu-item group hover:bg-slate-100"
+          href="#interior"
+        >
+          Servicio Interior
+          <img
+            class="h-5 transition-all duration-500 transform group-hover:translate-x-10 group-hover:grayscale-0 grayscale"
+            alt="Icono de Burbuja Azul"
+            src="../public/BurbujaAzul.png"
+          />
+        </a>
+      </li>
+      <li>
+        <a
+          class="flex items-center justify-between transition-colors duration-300 hover:text-black menu-item group hover:bg-slate-100"
+          href="#completo"
+        >
+          Servicio Completo
+          <img
+            class="h-5 transition-all duration-500 transform group-hover:translate-x-10 group-hover:grayscale-0 grayscale"
+            alt="Icono de Burbuja Azul"
+            src="../public/BurbujaAzul.png"
+          />
+        </a>
+      </li>
+      <li>
+        <a
+          class="flex items-center justify-between transition-colors duration-300 hover:text-black menu-item group hover:bg-slate-100"
+          href="#agenda"
+        >
+          Agenda Tu Servicio
+          <img
+            class="h-5 transition-all duration-500 transform group-hover:translate-x-10 group-hover:grayscale-0 grayscale"
+            alt="Icono de Burbuja Azul"
+            src="../public/BurbujaAzul.png"
+          />
+        </a>
+      </li>
     </ul>
   </nav>
 
+  <!-- Menú desplegable para dispositivos móviles -->
   <nav class="flex justify-end flex-grow basis-0">
     <ul
       class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
     >
-      <li class="hidden xl:block sm:hidden"><a href="#galeria">Galeria</a></li>
-      <li class="hidden xl:block sm:hidden"><a href="#resenas">Reseñas</a></li>
-      <li><a id="menu-btn" href="#">Menu</a></li>
+      <li class="hidden xl:block sm:hidden">
+        <a class="hover:bg-slate-100 hover:text-black" href="#galeria"
+          >Galeria</a
+        >
+      </li>
+      <li class="hidden xl:block sm:hidden">
+        <a class="hover:bg-slate-100 hover:text-black" href="#resenas"
+          >Reseñas</a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-slate-100 hover:text-black" id="menu-btn" href="#"
+          >Menu</a
+        >
+      </li>
     </ul>
   </nav>
 
   <nav
     id="modal-menu"
-    class="fixed top-0 bottom-0 left-0 right-0 flex flex-col bg-white xl:hidden"
+    class="fixed top-0 bottom-0 left-0 right-0 flex-col hidden bg-white xl:hidden"
   >
     <button id="close-btn" class="flex justify-end w-screen p-5">
       <img
@@ -43,69 +105,83 @@ import Logo from "./Logo.astro";
       />
     </button>
     <ul
-      class="flex flex-col mt-4 [&>li>a]:font-size: 20px [&>li>a]:transition-colors [&>li]:m-3 [&>li>a]:justify-between [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-6 [&>li>a]:py-3 [&>li>a]:rounded-md [&>li>a]:w-full"
+      class="flex flex-col mt-4 [&>li>a]:font-size:20px [&>li>a]:transition-colors [&>li]:m-3 [&>li>a]:justify-between [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-6 [&>li>a]:py-3 [&>li>a]:rounded-md [&>li>a]:w-full"
     >
       <li>
-        <a class="hover:bg-slate-100" href="#home">
-          Inicio <img
-            class="h-5"
+        <a class="menu-item hover:bg-slate-100" href="#home">
+          Inicio
+          <img
+            class="h-5 transition-transform duration-300"
             alt="arrow icon"
-            src="../public/arrow-icon.svg"
-          /></a
-        >
+            src="../public/Burbuja.png"
+          />
+        </a>
       </li>
       <li>
-        <a class="hover:bg-slate-100" href="#exterior"
-          >Servicio Exterior<img
-            class="h-5"
+        <a class="menu-item hover:bg-slate-100" href="#exterior">
+          Servicio Exterior
+          <img
+            class="h-5 transition-transform duration-300"
             alt="arrow icon"
-            src="../public/arrow-icon.svg"
-          /></a
-        >
+            src="../public/Burbuja.png"
+          />
+        </a>
       </li>
       <li>
-        <a class="hover:bg-slate-100" href="#interior"
-          >Servicio Interior<img
-            class="h-5"
+        <a class="menu-item hover:bg-slate-100" href="#interior">
+          Servicio Interior
+          <img
+            class="h-5 transition-transform duration-300"
             alt="arrow icon"
-            src="../public/arrow-icon.svg"
-          /></a
-        >
+            src="../public/Burbuja.png"
+          />
+        </a>
       </li>
       <li>
-        <a class="hover:bg-slate-100" href="#completo"
-          >Servicio Completo<img
-            class="h-5"
+        <a class="menu-item hover:bg-slate-100" href="#completo">
+          Servicio Completo
+          <img
+            class="h-5 transition-transform duration-300"
             alt="arrow icon"
-            src="../public/arrow-icon.svg"
-          /></a
-        >
+            src="../public/Burbuja.png"
+          />
+        </a>
       </li>
       <li>
-        <a class="hover:bg-slate-100" href="#agenda"
-          >Agenda<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-        >
-      </li>
-      <li>
-        <a class="hover:bg-slate-100" href="#galeria"
-          >Galeria<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-        >
-      </li>
-      <li>
-        <a class="hover:bg-slate-100" href="#resenas"
-          >Reseñas<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-        >
+        <a class="menu-item hover:bg-slate-100" href="#agenda">
+          Agenda
+          <img
+            class="h-5 transition-transform duration-300"
+            alt="arrow icon"
+            src="../public/Burbuja.png"
+          />
+        </a>
       </li>
     </ul>
   </nav>
+
+  <style>
+    .arrow-icon {
+      transform: translateX(0); /* Posición inicial */
+    }
+
+    .menu-item.active .arrow-icon {
+      transform: translateX(10px); /* Desplaza la flecha hacia la derecha */
+    }
+
+    .menu-item {
+      position: relative;
+      overflow: hidden;
+    }
+  </style>
 
   <script>
     const menuBtn = document.getElementById("menu-btn");
     const modalMenu = document.querySelector("#modal-menu") as HTMLElement;
     const closeBtn = document.querySelector("#close-btn") as HTMLElement;
 
+    // Función para mostrar u ocultar el menú desplegable
     function toggleDropdownMenu() {
-      // Aquí estamos alternando el valor del display para mostrar/ocultar el menú
       modalMenu.style.display =
         modalMenu.style.display === "flex" ? "none" : "flex";
     }
@@ -117,42 +193,53 @@ import Logo from "./Logo.astro";
     if (closeBtn) {
       closeBtn.addEventListener("click", toggleDropdownMenu);
     }
-  </script>
 
-  <script>
+    // Cambiar color del encabezado al hacer scroll
+    const headerEl = document.querySelector("#landing-header");
+    const threshold = 50; // Límite en píxeles para el cambio
+
+    if (headerEl) {
+      window.addEventListener("scroll", () => {
+        const scrollY = window.scrollY;
+        if (scrollY > threshold) {
+          headerEl.classList.add("bg-black", "shadow-md");
+          headerEl.classList.remove("bg-transparent");
+        } else {
+          headerEl.classList.add("bg-transparent");
+          headerEl.classList.remove("bg-black", "shadow-md");
+        }
+      });
+    }
+
+    // Agregar fondo temporal al pasar el cursor por los elementos del menú
     const listItem = document.querySelectorAll("#landing-header li");
 
     listItem.forEach((item) => {
-      item.addEventListener("mouseenter", () => {
-        const { left, top, width, height } = (
-          item as HTMLElement
-        ).getBoundingClientRect();
-
-        (item as HTMLElement).style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+      const listItemElement = item as HTMLElement;
+      listItemElement.addEventListener("mouseenter", () => {
+        listItemElement.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
       });
 
-      item.addEventListener("mouseleave", () => {
-        (item as HTMLElement).style.backgroundColor = "transparent";
+      listItemElement.addEventListener("mouseleave", () => {
+        listItemElement.style.backgroundColor = "transparent";
       });
     });
-  </script>
 
-  <script>
-    const headerEl = document.querySelector("#landing-header");
-
+    // Cambiar el color del encabezado en secciones específicas usando Intersection Observer
     const observerOptions = {
       root: null,
-      rootMargin: "0px", // en cuanto se vea el elemento
-      threshold: 0.9, // porcentaje de visibilidad
+      rootMargin: "0px",
+      threshold: 0.9,
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        const { isIntersecting } = entry;
-        if (isIntersecting) {
+        if (entry.isIntersecting) {
           const color = entry.target.getAttribute("data-header-color");
           if (color) {
-            (headerEl as HTMLElement).style.color = color;
+            if (headerEl) {
+              (headerEl as HTMLElement).style.color = color;
+            }
           }
         }
       });
