@@ -19,6 +19,12 @@ import FooterMenu from "./FooterMenu.astro";
       </p>
     </header>
 
+    <!-- Contenedor de contenido principal -->
+    <div class="relative z-20 w-full">
+      <slot name="body" />
+      <!-- Aquí se insertará el contenido -->
+    </div>
+
     <footer class="flex flex-col items-center justify-end flex-grow pb-20">
       <slot name="footer" />
       <!-- Conditionally load footer: -->
