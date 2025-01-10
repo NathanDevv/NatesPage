@@ -51,7 +51,7 @@ import MenuDerecha from "./MenuDerecha.astro";
     const menuBtn = document.getElementById("menu-btn");
     const closeBtn = document.querySelector("#close-btn");
     const modalMenu = document.querySelector("#modal-menu");
-    const headerEl = document.querySelector("#landing-header");
+    const headerEl = document.querySelector("#landing-header") as HTMLElement;
 
     // Verificar que modalMenu no sea null
     if (modalMenu) {
@@ -83,8 +83,8 @@ import MenuDerecha from "./MenuDerecha.astro";
       });
     }
 
-    // Cambiar estilos del header en scroll
     if (headerEl) {
+      // Cambiar estilos del header en scroll
       const threshold = 50;
       window.addEventListener("scroll", () => {
         const isScrolled = window.scrollY > threshold;
@@ -92,13 +92,16 @@ import MenuDerecha from "./MenuDerecha.astro";
         headerEl.classList.toggle("shadow-md", isScrolled);
         headerEl.classList.toggle("bg-transparent", !isScrolled);
       });
-    }
 
-    // Cambiar color del header con Intersection Observer
-    const observerOptions = { root: null, rootMargin: "0px", threshold: 0.9 };
-    if (headerEl) {
+      // Cambiar color del header con IntersectionObserver
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1, // Ajusta según el comportamiento deseado
+      };
+
       const changeHeaderColor = (color: string) => {
-        (headerEl as HTMLElement).style.color = color || "";
+        headerEl.style.color = color || "";
       };
 
       const observer = new IntersectionObserver((entries) => {
