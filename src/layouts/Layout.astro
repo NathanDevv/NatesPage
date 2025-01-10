@@ -1,3 +1,11 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -6,7 +14,7 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Nate´s Detailing</title>
+    <title>{title}</title>
   </head>
   <body class="min-h-screen pb-12 bg-gray-900">
     <main class="max-w-5xl px-4">
@@ -19,5 +27,6 @@
     font-family: system-ui, sans-serif;
     background: #13151a;
     background-size: 224px;
+    scroll-behavior: smooth;
   }
 </style>
