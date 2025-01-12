@@ -21,6 +21,7 @@
     <a
       href="#servicios"
       class="z-10 inline-block px-6 py-3 text-lg text-white transition duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
+      id="explore-services"
     >
       Explora nuestros servicios
     </a>
@@ -37,6 +38,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     const popup = document.getElementById("welcome-popup");
     const closePopupButton = document.getElementById("close-popup");
+    const exploreServicesButton = document.getElementById("explore-services");
 
     if (!popup) {
       console.error("Popup element (#welcome-popup) not found.");
@@ -45,6 +47,11 @@
 
     if (!closePopupButton) {
       console.error("Close button (#close-popup) not found.");
+      return;
+    }
+
+    if (!exploreServicesButton) {
+      console.error("Explore services button (#explore-services) not found.");
       return;
     }
 
@@ -60,7 +67,7 @@
       }
     }, 1000);
 
-    // Cerrar el popup al hacer clic en el botón
+    // Cerrar el popup al hacer clic en el botón "Cerrar"
     closePopupButton.addEventListener("click", () => {
       popup.classList.add("opacity-0", "invisible");
       popup.classList.remove("opacity-100", "visible");
@@ -70,6 +77,26 @@
         popupDiv.classList.remove("scale-100");
         popupDiv.classList.add("scale-95");
       }
+    });
+
+    // Cerrar el popup y luego permitir la navegación al hacer clic en el enlace "Explora nuestros servicios"
+    exploreServicesButton.addEventListener("click", (event) => {
+      event.preventDefault(); // Evita la navegación inmediata
+
+      // Cerrar el popup
+      popup.classList.add("opacity-0", "invisible");
+      popup.classList.remove("opacity-100", "visible");
+
+      const popupDiv = popup.querySelector("div");
+      if (popupDiv) {
+        popupDiv.classList.remove("scale-100");
+        popupDiv.classList.add("scale-95");
+      }
+
+      // Luego de un pequeño retraso, realizar la navegación
+      setTimeout(() => {
+        window.location.href = "#servicios";
+      }, 300); // Se espera a que el popup se cierre antes de navegar
     });
   });
 </script>
