@@ -2,69 +2,105 @@
 import Section from "./Section.astro";
 
 const title = "Servicios";
-const subtitle = "Agendar un servicio";
+const subtitle = "Conoce nuestros servicios";
 ---
 
 <Section title={title} subtitle={subtitle} color="white" id="servicios">
   <!-- Contenedor principal con fondo e imagen -->
-  <section class="relative bg-[#13151a] text-white py-16 min-h-screen">
+  <section
+    class="relative bg-[#13151a] text-white py-16 min-h-auto overflow-hidden"
+  >
     <div slot="body" class="relative z-20 px-8 mx-auto max-w-7xl">
       <h2 class="text-3xl font-bold text-center">{title}</h2>
       <p class="mt-4 text-lg text-center text-gray-300">{subtitle}</p>
     </div>
   </section>
 
-  <div slot="body" class="grid grid-cols-1 gap-8 mt-12 md:grid-cols-2">
+  <!-- Contenedor de Videos y Antes/Después alineados horizontalmente -->
+  <div slot="body" class="flex flex-wrap justify-center gap-4 mt-8">
     <!-- Video 1 -->
-    <div class="object-cover overflow-hidden rounded-lg shadow-lg">
-      <video class="object-cover w-full h-auto" controls>
-        <source src="../public/Exterior.mp4" type="video/mp4" />
-      </video>
-      <p class="mt-4 text-center text-white">Servicio Exterior</p>
+    <div
+      class="w-full max-w-xs mx-auto overflow-hidden shadow-lg sm:max-w-sm lg:max-w-md"
+    >
+      <div class="relative">
+        <video
+          id="video-exterior"
+          muted
+          autoplay
+          loop
+          class="object-cover w-full h-full rounded-2xl"
+        >
+          <source src="../public/Exterior.mp4" type="video/mp4" />
+        </video>
+        <!-- Fondo gris con texto -->
+        <div
+          class="absolute inset-0 flex items-center justify-center text-white transition-opacity duration-300 opacity-100 bg-black/50"
+          id="text-exterior"
+        >
+          <p class="text-lg">Servicio Exterior</p>
+        </div>
+      </div>
     </div>
 
     <!-- Video 2 -->
-    <div class="overflow-hidden rounded-lg shadow-lg">
-      <video class="object-cover w-full h-auto" controls>
-        <source src="../public/Interior.mp4" type="video/mp4" />
-      </video>
-      <p class="mt-4 text-center text-white">Servicio Interior</p>
-    </div>
-  </div>
-
-  <!-- Fotos de antes y después centradas debajo de los videos -->
-  <div class="flex justify-center mt-12">
-    <section
-      slot="before-after"
-      class="relative mt-12 overflow-hidden rounded-lg shadow-lg group"
+    <div
+      class="w-full max-w-xs mx-auto overflow-hidden shadow-lg sm:max-w-sm lg:max-w-md"
     >
-      <!-- Imagen de "Antes" -->
+      <div class="relative">
+        <video
+          id="video-interior"
+          muted
+          autoplay
+          loop
+          class="object-cover w-full h-full rounded-2xl"
+        >
+          <source src="../public/Interior.mp4" type="video/mp4" />
+        </video>
+        <!-- Fondo gris con texto -->
+        <div
+          class="absolute inset-0 flex items-center justify-center text-white transition-opacity duration-300 opacity-100 bg-black/50"
+          id="text-interior"
+        >
+          <p class="text-lg">Servicio Interior</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Imagen Antes y Después -->
+    <div
+      class="relative w-full max-w-xs mx-auto overflow-hidden rounded-lg shadow-lg sm:max-w-sm lg:max-w-md group"
+    >
+      <!-- Imagen "Antes" -->
       <img
-        src="/Antes.jpeg"
+        src="../public/Antes.jpeg"
         alt="Antes del servicio"
-        class="object-cover w-full h-full transition-opacity duration-300 group-hover:opacity-0"
+        class="w-full h-full transition-opacity duration-300 group-hover:opacity-0"
       />
-
-      <!-- Imagen de "Después" -->
+      <!-- Imagen "Después" -->
       <img
-        src="/Despues.jpeg"
+        src="../public/Despues.jpeg"
         alt="Después del servicio"
-        class="absolute top-0 left-0 object-cover w-full h-full transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+        class="absolute top-0 left-0 w-full h-full transition-opacity duration-300 opacity-0 group-hover:opacity-100"
       />
-
-      <!-- Texto debajo de las imágenes -->
-      <p class="mt-4 text-center text-white">Servicio Completo</p>
-    </section>
+      <!-- Fondo gris con texto -->
+      <div
+        class="absolute inset-0 flex items-center justify-center text-white transition-opacity duration-300 opacity-100 bg-black/50"
+        id="text-completo"
+      >
+        <p class="text-lg">Servicio Completo</p>
+      </div>
+    </div>
   </div>
 
   <img
     slot="background"
     id="bg-image-modely"
-    src="/Servicios.jpg"
+    src="../public/Servicios.jpg"
     alt="Background Servicios"
     class="absolute inset-0 z-0 object-cover w-full h-full pointer-events-none opacity-10"
   />
 
+  <!-- Botones -->
   <section slot="footer" class="flex justify-center mx-auto mt-12 gap-x-6">
     <a
       class="inline-flex items-center justify-center px-12 py-2 text-sm font-medium text-white transition-colors rounded bg-cyan-700 hover:bg-slate-400 hover:text-white"
@@ -102,6 +138,38 @@ const subtitle = "Agendar un servicio";
       imageElement.src = "/Servicios.jpg"; // Ruta corregida
     } else {
       imageElement.src = "/Servicios.webp"; // Ruta corregida
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Función para ocultar el texto cuando se hace click en un video
+    function hideText(videoId: string, textId: string): void {
+      // Definir tipo de los parámetros
+      const video = document.getElementById(videoId) as HTMLVideoElement | null;
+      const text = document.getElementById(textId) as HTMLElement | null;
+
+      // Cuando el video se hace click, ocultamos el texto
+      if (video && text) {
+        video.addEventListener("click", function () {
+          text.style.opacity = "0"; // Hace desaparecer el texto
+        });
+      }
+    }
+
+    // Aplicar la función a los videos y sus textos correspondientes
+    hideText("video-exterior", "text-exterior");
+    hideText("video-interior", "text-interior");
+
+    // Para la imagen de Antes/Después
+    const imageGroup = document.querySelector(".group") as HTMLElement | null;
+    const textCompleto = document.getElementById(
+      "text-completo"
+    ) as HTMLElement | null;
+
+    if (imageGroup && textCompleto) {
+      imageGroup.addEventListener("click", function () {
+        textCompleto.style.opacity = "0"; // Oculta el texto para el servicio completo
+      });
     }
   });
 </script>

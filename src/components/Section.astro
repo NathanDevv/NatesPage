@@ -5,34 +5,30 @@ import FooterMenu from "./FooterMenu.astro";
 ---
 
 <section
-  class="relative flex items-center justify-center w-screen h-screen overflow-hidden text-center bg-black landing-section"
+  class="relative flex flex-col items-center justify-center w-full min-h-screen overflow-hidden text-center bg-black landing-section"
   data-header-color={color}
   id={id}
 >
-  <div class="relative z-30 flex flex-col items-center h-full">
-    <header>
-      <h2 class={`${textColor} pt-40 text-[40px] font-medium`}>
-        {title}
-      </h2>
-      <p class={`${textColor} text-sm`}>
-        {subtitle}
-      </p>
+  <div class="relative z-30 flex flex-col items-center w-full min-h-screen">
+    <!-- Header -->
+    <header class="flex flex-col items-center pt-40">
+      <h2 class={`${textColor} text-[40px] font-medium`}>{title}</h2>
+      <p class={`${textColor} text-sm`}>{subtitle}</p>
     </header>
 
     <!-- Contenedor de contenido principal -->
-    <div class="relative z-20 w-full">
+    <div class="relative z-20 flex-grow w-full">
       <slot name="body" />
-      <!-- Aquí se insertará el contenido -->
     </div>
 
+    <!-- Footer -->
     <footer class="flex flex-col items-center justify-end flex-grow pb-20">
       <slot name="footer" />
-      <!-- Conditionally load footer: -->
       {showFooterContent && <FooterMenu />}
     </footer>
   </div>
 
-  <!-- Ajuste para el video de fondo, asegurándose de que cubra el contenedor -->
+  <!-- Fondo de la sección (video o imagen) -->
   <div class="absolute inset-0 z-10">
     <slot name="background" />
   </div>
