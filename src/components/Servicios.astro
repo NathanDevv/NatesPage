@@ -66,28 +66,27 @@ const subtitle = "Conoce nuestros servicios";
       </div>
     </div>
 
-    <!-- Imagen Antes y Después -->
+    <!-- Completo -->
     <div
-      class="relative w-full max-w-xs mx-auto overflow-hidden rounded-lg shadow-lg sm:max-w-sm lg:max-w-md group"
+      class="w-full max-w-xs mx-auto overflow-hidden shadow-lg sm:max-w-sm lg:max-w-md"
     >
-      <!-- Imagen "Antes" -->
-      <img
-        src="../public/Antes.jpeg"
-        alt="Antes del servicio"
-        class="w-full h-full transition-opacity duration-300 group-hover:opacity-0"
-      />
-      <!-- Imagen "Después" -->
-      <img
-        src="../public/Despues.jpeg"
-        alt="Después del servicio"
-        class="absolute top-0 left-0 w-full h-full transition-opacity duration-300 opacity-0 group-hover:opacity-100"
-      />
-      <!-- Fondo gris con texto -->
-      <div
-        class="absolute inset-0 flex items-center justify-center text-white transition-opacity duration-300 opacity-100 bg-black/50"
-        id="text-completo"
-      >
-        <a class="text-lg" href="#servicioCompleto">Servicio Completo</a>
+      <div class="relative">
+        <video
+          id="video-completo"
+          muted
+          autoplay
+          loop
+          class="object-cover w-full h-full rounded-2xl"
+        >
+          <source src="../public/completo5.mp4" type="video/mp4" />
+        </video>
+        <!-- Fondo gris con texto -->
+        <div
+          class="absolute inset-0 flex items-center justify-center text-white transition-opacity duration-300 opacity-100 bg-black/50"
+          id="text-completo"
+        >
+          <a class="text-lg" href="#servicioCompleto">Servicio Completo</a>
+        </div>
       </div>
     </div>
   </div>
@@ -138,38 +137,6 @@ const subtitle = "Conoce nuestros servicios";
       imageElement.src = "/Servicios.jpg"; // Ruta corregida
     } else {
       imageElement.src = "/Servicios.webp"; // Ruta corregida
-    }
-  });
-
-  document.addEventListener("DOMContentLoaded", function () {
-    // Función para ocultar el texto cuando se hace click en un video
-    function hideText(videoId: string, textId: string): void {
-      // Definir tipo de los parámetros
-      const video = document.getElementById(videoId) as HTMLVideoElement | null;
-      const text = document.getElementById(textId) as HTMLElement | null;
-
-      // Cuando el video se hace click, ocultamos el texto
-      if (video && text) {
-        video.addEventListener("click", function () {
-          text.style.opacity = "0"; // Hace desaparecer el texto
-        });
-      }
-    }
-
-    // Aplicar la función a los videos y sus textos correspondientes
-    hideText("video-exterior", "text-exterior");
-    hideText("video-interior", "text-interior");
-
-    // Para la imagen de Antes/Después
-    const imageGroup = document.querySelector(".group") as HTMLElement | null;
-    const textCompleto = document.getElementById(
-      "text-completo"
-    ) as HTMLElement | null;
-
-    if (imageGroup && textCompleto) {
-      imageGroup.addEventListener("click", function () {
-        textCompleto.style.opacity = "0"; // Oculta el texto para el servicio completo
-      });
     }
   });
 </script>
