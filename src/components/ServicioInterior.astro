@@ -2,14 +2,160 @@
 import Section from "./Section.astro";
 
 const title = "Servicio Interior";
-const subtitle = "Renueva el interior de tu auto con nuestro servicio interior";
+const subtitle =
+  "Dale un toque de frescura a tu auto con nuestro servicio interior";
+
+// Videos del carrusel
+const videos = [
+  {
+    src: "../public/interior1.mp4",
+    alt: "Trabajo de detallado interior en una Jeep Mojave con acabados en rojos y oscuros",
+  },
+  {
+    src: "../public/interior2.mp4",
+    alt: "Trabajo de exterior en una Honda CR-V Gris",
+  },
+  {
+    src: "../public/interior3.mp4",
+    alt: "Trabajo de detallado exterior en un BMW 528i Gris ",
+  },
+  {
+    src: "../public/interior4.mp4",
+    alt: "Trabajo de detallado exterior en un Mercedes AMG GLA 250 Blanco",
+  },
+  {
+    src: "../public/interior5.mp4",
+    alt: "Trabajo de detallado exterior en una Honda CR-V Roja",
+  },
+  {
+    src: "../public/interior6.mp4",
+    alt: "Trabajo de detallado en un Chevrolet Camaro SS",
+  },
+];
+
+const description = `Brinda a tu vehículo una limpieza completa por dentro con nuestro servicio de lavado interior a domicilio. Nos encargamos de eliminar suciedad, polvo y manchas en tapicería, alfombrillas, asientos y todas las superficies interiores, dejando tu coche fresco y en óptimas condiciones.
+
+Este servicio incluye:
+
+Retiro y limpieza de asientos (sin profundizar en tapicería especializada).
+Limpieza de tablero, puertas, marcos de puertas y otras superficies interiores.
+Aspirado de alfombrillas, asientos y otras áreas del interior.
+Limpieza profunda de paneles interiores.
+
+El costo varía entre $800 y $1,000 MXN, dependiendo del tamaño y el estado del vehículo. El tiempo estimado de trabajo es de 2 a 3 horas, según las necesidades del coche.
+
+¡Deja tu auto como nuevo sin salir de casa! Contáctanos para agendar tu cita y disfrutar de un vehículo completamente limpio.`;
 ---
 
-<Section
-  title={title}
-  subtitle={subtitle}
-  color="white"
-  id="servicioInterior"
-/>
+<Section title={title} subtitle={subtitle} color="white" id="servicioInterior">
+  <div slot="body" class="flex flex-col items-center gap-8 mt-8">
+    <!-- Carrusel de Videos -->
+    <div class="flex justify-center w-full md:w-2/3 lg:w-1/2">
+      <!-- Ajustar el tamaño de los videos aquí -->
+      <div
+        class="relative w-full max-w-xs overflow-hidden rounded-lg shadow-lg sm:max-w-sm lg:max-w-md"
+      >
+        <div
+          id="carouselInterior"
+          class="relative z-0 flex transition-transform duration-500 ease-in-out"
+        >
+          {
+            videos.map((video, index) => (
+              <div class="relative flex-shrink-0 w-full">
+                <video
+                  src={video.src}
+                  class="object-cover w-full h-full"
+                  loop
+                  autoplay
+                  muted
+                  preload="metadata"
+                  playsinline
+                />
+              </div>
+            ))
+          }
+        </div>
+        <!-- Controles -->
+        <button
+          id="prevInterior"
+          aria-label="Video anterior"
+          class="absolute z-10 px-3 py-2 text-white -translate-y-1/2 bg-black bg-opacity-50 rounded-full top-1/2 left-4 hover:bg-opacity-75"
+        >
+          &larr;
+        </button>
+        <button
+          id="nextInterior"
+          aria-label="Video siguiente"
+          class="absolute z-10 px-3 py-2 text-white -translate-y-1/2 bg-black bg-opacity-50 rounded-full top-1/2 right-4 hover:bg-opacity-75"
+        >
+          &rarr;
+        </button>
+      </div>
+    </div>
 
-<script></script>
+    <!-- Descripción del servicio -->
+    <div class="w-full text-center md:w-3/4 lg:w-1/2">
+      <p class="text-lg text-gray-300">{description}</p>
+    </div>
+  </div>
+
+  <img
+    slot="background"
+    src="../public/Servicios.jpg"
+    alt="Background Servicios"
+    class="absolute inset-0 object-cover w-full h-full pointer-events-none opacity-10 z-[-1]"
+  />
+</Section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const videos = document.querySelector("#carouselInterior") as HTMLElement;
+    const prevButton = document.querySelector("#prevInterior");
+    const nextButton = document.querySelector("#nextInterior");
+
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      const offset = currentIndex * -100; // Mueve el carrusel en base al índice
+      videos.style.transform = `translateX(${offset}%)`;
+
+      // Pausar los videos fuera de vista
+      Array.from(videos.children).forEach((video, index) => {
+        const videoElement = video.querySelector("video");
+        if (videoElement) {
+          if (index === currentIndex) {
+            videoElement.play();
+          } else {
+            videoElement.pause();
+          }
+        }
+      });
+    }
+
+    if (prevButton) {
+      prevButton.addEventListener("click", () => {
+        currentIndex =
+          (currentIndex - 1 + videos.children.length) % videos.children.length;
+        updateCarousel();
+      });
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % videos.children.length;
+        updateCarousel();
+      });
+    }
+
+    // Inicializa el carrusel
+    updateCarousel();
+  });
+</script>
+
+<style>
+  #carouselInterior video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

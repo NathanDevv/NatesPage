@@ -6,16 +6,33 @@ const subtitle = "Destaca la belleza de tu auto con nuestro servicio exterior";
 
 // Videos del carrusel
 const videos = [
-  { src: "/public/exterior1.mp4", alt: "Trabajo de detallado 1" },
-  { src: "/public/exterior2.mp4", alt: "Trabajo de detallado 2" },
-  { src: "/public/exterior3.mp4", alt: "Trabajo de detallado 3" },
-  { src: "/public/exterior4.mp4", alt: "Trabajo de detallado 4" },
-  { src: "/public/exterior5.mp4", alt: "Trabajo de detallado 5" },
-  { src: "/public/exterior.mp4", alt: "Trabajo de detallado 6" },
+  {
+    src: "../public/exterior1.mp4",
+    alt: "Trabajo de detallado exterior en una Jeep Mojave Gris",
+  },
+  {
+    src: "../public/exterior2.mp4",
+    alt: "Trabajo de exterior en una Honda CR-V Gris",
+  },
+  {
+    src: "../public/exterior3.mp4",
+    alt: "Trabajo de detallado exterior en un BMW 528i Gris ",
+  },
+  {
+    src: "../public/exterior4.mp4",
+    alt: "Trabajo de detallado exterior en un Mercedes AMG GLA 250 Blanco",
+  },
+  {
+    src: "../public/exterior5.mp4",
+    alt: "Trabajo de detallado exterior en una Honda CR-V Roja",
+  },
+  {
+    src: "../public/exterior.mp4",
+    alt: "Trabajo de detallado en un Chevrolet Camaro SS",
+  },
 ];
 
 const description = `
-  Servicio de Lavado Exterior a Domicilio
 Mantén tu vehículo impecable con nuestro servicio de lavado exterior a domicilio. Nos encargamos de la limpieza profunda de la carrocería, llantas y detalles exteriores, eliminando suciedad, polvo y residuos sin comprometer la pintura ni las superficies de tu coche.
 
 Nuestro servicio tiene un costo que varía entre $280 y $350 MXN, dependiendo del estado y tamaño del vehículo, y el tiempo estimado de trabajo es de una hora a una hora y media. Disfruta de la comodidad de tener tu auto limpio sin tener que salir de casa.
@@ -25,7 +42,7 @@ Nuestro servicio tiene un costo que varía entre $280 y $350 MXN, dependiendo de
 ---
 
 <Section title={title} subtitle={subtitle} color="white" id="servicioExterior">
-  <div slot="body" class="flex flex-col items-center gap-8">
+  <div slot="body" class="flex flex-col items-center gap-8 mt-8">
     <!-- Carrusel de Videos -->
     <div class="flex justify-center w-full md:w-2/3 lg:w-1/2">
       <!-- Ajustar el tamaño de los videos aquí -->
