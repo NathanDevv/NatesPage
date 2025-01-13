@@ -1,68 +1,68 @@
 <!-- Menú principal -->
 <nav class="hidden xl:block sm:block" data-header-color="blue">
   <ul
-    class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
+    class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:px-4 [&>li>a]:py-2"
   >
-    <li>
+    <li class="menu-item">
       <a
-        class="flex items-center justify-between transition-colors duration-300 hover:text-black hover:bg-slate-100"
+        class="flex items-center justify-between transition-colors duration-300 hover:text-black hover:bg-slate-100 hover:scale-105"
         href="#servicios"
       >
         Servicios
         <img
-          class="h-5 transition-all duration-500 transform hover:translate-x-10 hover:grayscale-0 grayscale"
+          class="h-5 transition-all duration-500 transform burbuja-icon"
           alt="Icono de Burbuja Azul"
           src="../public/BurbujaAzul.png"
         />
       </a>
     </li>
-    <li>
+    <li class="menu-item">
       <a
-        class="flex items-center justify-between transition-colors duration-300 hover:text-black hover:bg-slate-100"
+        class="flex items-center justify-between transition-colors duration-300 hover:text-black hover:bg-slate-100 hover:scale-105"
         href="#servicioExterior"
       >
         Servicio Exterior
         <img
-          class="h-5 transition-all duration-500 transform hover:translate-x-10 hover:grayscale-0 grayscale"
+          class="h-5 transition-all duration-500 transform burbuja-icon"
           alt="Icono de Burbuja Azul"
           src="../public/BurbujaAzul.png"
         />
       </a>
     </li>
-    <li>
+    <li class="menu-item">
       <a
-        class="flex items-center justify-between transition-colors duration-300 hover:text-black hover:bg-slate-100"
+        class="flex items-center justify-between transition-colors duration-300 hover:text-black hover:bg-slate-100 hover:scale-105"
         href="#servicioInterior"
       >
         Servicio Interior
         <img
-          class="h-5 transition-all duration-500 transform hover:translate-x-10 hover:grayscale-0 grayscale"
+          class="h-5 transition-all duration-500 transform burbuja-icon"
           alt="Icono de Burbuja Azul"
           src="../public/BurbujaAzul.png"
         />
       </a>
     </li>
-    <li>
+    <li class="menu-item">
       <a
-        class="flex items-center justify-between transition-colors duration-300 hover:text-black hover:bg-slate-100"
+        class="flex items-center justify-between transition-colors duration-300 hover:text-black hover:bg-slate-100 hover:scale-105"
         href="#servicioCompleto"
       >
         Servicio Completo
         <img
-          class="h-5 transition-all duration-500 transform hover:translate-x-10 hover:grayscale-0 grayscale"
+          class="h-5 transition-all duration-500 transform burbuja-icon"
           alt="Icono de Burbuja Azul"
           src="../public/BurbujaAzul.png"
         />
       </a>
     </li>
-    <li>
+    <li class="menu-item">
       <a
-        class="flex items-center justify-between transition-colors duration-300 hover:text-black hover:bg-slate-100"
+        class="flex items-center justify-between transition-colors duration-300 hover:text-black hover:bg-slate-100 hover:scale-105"
         href="#agenda"
       >
         Agenda Tu Servicio
         <img
-          class="h-5 transition-all duration-500 transform hover:translate-x-10 hover:grayscale-0 grayscale"
+          class="h-5 transition-all duration-500 transform burbuja-icon"
           alt="Icono de Burbuja Azul"
           src="../public/BurbujaAzul.png"
         />
@@ -70,3 +70,42 @@
     </li>
   </ul>
 </nav>
+
+<script>
+  // Obtener todos los elementos del menú
+  const menuItems = document.querySelectorAll(".menu-item");
+
+  // Añadir el evento de click a cada uno
+  menuItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      // Eliminar la clase 'active' de todos los elementos
+      menuItems.forEach((i) => i.classList.remove("active"));
+      // Añadir la clase 'active' al que ha sido clickeado
+      item.classList.add("active");
+    });
+  });
+</script>
+
+<style>
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  @layer components {
+    .burbuja-icon {
+      @apply transition-transform ease-in-out;
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Animación aplicada al hover del enlace */
+    .menu-item a:hover .burbuja-icon {
+      @apply transform translate-y-[-10px] opacity-50;
+    }
+
+    /* Asegurarse de que el texto se ponga negro en hover */
+    .menu-item a:hover {
+      color: black !important; /* Asegura que el color sea negro, incluso si se usa currentColor */
+    }
+  }
+</style>

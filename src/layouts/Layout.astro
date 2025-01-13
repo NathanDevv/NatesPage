@@ -1,23 +1,31 @@
 ---
 export interface Props {
   title: string;
+  description?: string;
+  viewport?: string;
 }
 
-const { title } = Astro.props;
+const { title, description, viewport } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
+    <meta
+      name="description"
+      content={description || "Página web creada con Astro."}
+    />
+    <meta
+      name="viewport"
+      content={viewport || "width=device-width, initial-scale=1"}
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
   <body class="bg-gray-900">
-    <main class="relative min-h-screen px-0">
+    <main class="relative min-h-screen px-0" role="main">
       <slot />
     </main>
   </body>
@@ -27,13 +35,21 @@ const { title } = Astro.props;
   html {
     font-family: system-ui, sans-serif;
     background: #13151a;
-    background-size: 224px;
+    background-size: cover;
     scroll-behavior: smooth;
-    z-index: 1; /* Ajustar z-index si es necesario */
+    z-index: 1;
   }
 
   body {
-    position: relative;
-    z-index: 2; /* Para asegurar que el contenido principal se vea encima */
+    margin: 0;
+    padding: 0;
+    z-index: 2;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 </style>

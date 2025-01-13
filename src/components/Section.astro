@@ -1,6 +1,20 @@
 ---
-const { color, title, subtitle, id, showFooterContent } = Astro.props;
-const textColor = `text-${color}`;
+const { color, title, subtitle, id, showFooterContent } = Astro.props as {
+  color: keyof typeof colorMap;
+  title: string;
+  subtitle: string;
+  id: string;
+  showFooterContent: boolean;
+};
+
+const colorMap = {
+  white: "text-white",
+  black: "text-black",
+  red: "text-red-500",
+  // Agrega más colores según sea necesario
+};
+const textColor = colorMap[color] || "text-gray-500"; // Color por defecto
+
 import FooterMenu from "./FooterMenu.astro";
 ---
 
@@ -30,6 +44,9 @@ import FooterMenu from "./FooterMenu.astro";
 
   <!-- Fondo de la sección (video o imagen) -->
   <div class="absolute inset-0 z-10">
-    <slot name="background" />
+    <slot name="background">
+      <!-- Contenido de fondo por defecto -->
+      <div class="bg-gray-800 opacity-75"></div>
+    </slot>
   </div>
 </section>

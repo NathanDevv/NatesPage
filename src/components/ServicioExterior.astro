@@ -3,13 +3,137 @@ import Section from "./Section.astro";
 
 const title = "Servicio Exterior";
 const subtitle = "Destaca la belleza de tu auto con nuestro servicio exterior";
+
+// Videos del carrusel
+const videos = [
+  { src: "/public/exterior1.mp4", alt: "Trabajo de detallado 1" },
+  { src: "/public/exterior2.mp4", alt: "Trabajo de detallado 2" },
+  { src: "/public/exterior3.mp4", alt: "Trabajo de detallado 3" },
+  { src: "/public/exterior4.mp4", alt: "Trabajo de detallado 4" },
+  { src: "/public/exterior5.mp4", alt: "Trabajo de detallado 5" },
+  { src: "/public/exterior.mp4", alt: "Trabajo de detallado 6" },
+];
+
+const description = `
+  Servicio de Lavado Exterior a Domicilio
+Mantén tu vehículo impecable con nuestro servicio de lavado exterior a domicilio. Nos encargamos de la limpieza profunda de la carrocería, llantas y detalles exteriores, eliminando suciedad, polvo y residuos sin comprometer la pintura ni las superficies de tu coche.
+
+Nuestro servicio tiene un costo que varía entre $280 y $350 MXN, dependiendo del estado y tamaño del vehículo, y el tiempo estimado de trabajo es de una hora a una hora y media. Disfruta de la comodidad de tener tu auto limpio sin tener que salir de casa.
+
+¡Haz tu cita hoy mismo y dale a tu vehículo la atención que se merece!
+`;
 ---
 
-<Section
-  title={title}
-  subtitle={subtitle}
-  color="white"
-  id="servicioExterior"
-/>
+<Section title={title} subtitle={subtitle} color="white" id="servicioExterior">
+  <div slot="body" class="flex flex-col items-center gap-8">
+    <!-- Carrusel de Videos -->
+    <div class="flex justify-center w-full md:w-2/3 lg:w-1/2">
+      <!-- Ajustar el tamaño de los videos aquí -->
+      <div
+        class="relative w-full max-w-xs overflow-hidden rounded-lg shadow-lg sm:max-w-sm lg:max-w-md"
+      >
+        <div
+          id="carousel"
+          class="flex transition-transform duration-500 ease-in-out"
+        >
+          {
+            videos.map((video, index) => (
+              <div class="relative flex-shrink-0 w-full">
+                <video
+                  src={video.src}
+                  class="object-cover w-full h-full"
+                  loop
+                  autoplay
+                  muted
+                  preload="metadata"
+                  playsinline
+                />
+              </div>
+            ))
+          }
+        </div>
+        <!-- Controles -->
+        <button
+          id="prev"
+          aria-label="Video anterior"
+          class="absolute px-3 py-2 text-white -translate-y-1/2 bg-black bg-opacity-50 rounded-full top-1/2 left-4 hover:bg-opacity-75"
+        >
+          &larr;
+        </button>
+        <button
+          id="next"
+          aria-label="Video siguiente"
+          class="absolute px-3 py-2 text-white -translate-y-1/2 bg-black bg-opacity-50 rounded-full top-1/2 right-4 hover:bg-opacity-75"
+        >
+          &rarr;
+        </button>
+      </div>
+    </div>
 
-<script></script>
+    <!-- Descripción del servicio -->
+    <div class="w-full text-center md:w-3/4 lg:w-1/2">
+      <p class="text-lg text-gray-300">{description}</p>
+    </div>
+  </div>
+
+  <img
+    slot="background"
+    id="bg-image-modely"
+    src="../public/Servicios.jpg"
+    alt="Background Servicios"
+    class="absolute inset-0 z-0 object-cover w-full h-full pointer-events-none opacity-10"
+  />
+</Section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const videos = document.querySelector("#carousel") as HTMLElement;
+    const prevButton = document.querySelector("#prev");
+    const nextButton = document.querySelector("#next");
+
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      const offset = currentIndex * -100; // Mueve el carrusel en base al índice
+      videos.style.transform = `translateX(${offset}%)`;
+
+      // Pausar los videos fuera de vista
+      Array.from(videos.children).forEach((video, index) => {
+        const videoElement = video.querySelector("video");
+        if (videoElement) {
+          if (index === currentIndex) {
+            videoElement.play();
+          } else {
+            videoElement.pause();
+          }
+        }
+      });
+    }
+
+    if (prevButton) {
+      prevButton.addEventListener("click", () => {
+        currentIndex =
+          (currentIndex - 1 + videos.children.length) % videos.children.length;
+        updateCarousel();
+      });
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % videos.children.length;
+        updateCarousel();
+      });
+    }
+
+    // Inicializa el carrusel
+    updateCarousel();
+  });
+</script>
+
+<style>
+  #carousel video {
+    width: 100%; /* Asegura que los videos ocupen todo el ancho */
+    height: 100%; /* Asegura que los videos ocupen toda la altura disponible */
+    object-fit: cover; /* Ajusta el video para que cubra el contenedor sin distorsionarse */
+  }
+</style>

@@ -11,7 +11,7 @@ import MenuDerecha from "./MenuDerecha.astro";
   data-header-color="blue"
 >
   <div class="flex flex-grow basis-0">
-    <a href="./"><Logo /></a>
+    <a href="#"><Logo /></a>
   </div>
 
   <MenuPrincipal />
@@ -20,32 +20,6 @@ import MenuDerecha from "./MenuDerecha.astro";
   <MenuDerecha />
 
   <ModalMenu />
-
-  <style>
-    .burbuja-icon {
-      transform: translateX(0); /* Posición inicial */
-    }
-
-    .menu-item.active .burbuja-icon {
-      transform: translateX(10px); /* Desplaza la flecha hacia la derecha */
-    }
-
-    .menu-item {
-      position: relative;
-      overflow: hidden;
-    }
-    .translate-x-full {
-      transform: translateX(100%);
-    }
-
-    .translate-x-0 {
-      transform: translateX(0);
-    }
-
-    #modal-menu {
-      transition: transform 0.3s ease-in-out;
-    }
-  </style>
 
   <script>
     const menuBtn = document.getElementById("menu-btn");
