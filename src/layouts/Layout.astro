@@ -31,6 +31,41 @@ const { title, description, viewport } = Astro.props;
   </body>
 </html>
 
+<script src="https://apis.google.com/js/api.js" defer></script>
+
+<script>
+  window.onload = () => {
+    gapi.load("client", async () => {
+      try {
+        // Inicializa el cliente de la API
+        await gapi.client.init({
+          apiKey: import.meta.env.VITE_GOOGLE_API_KEY,
+          clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+          scope: "https://www.googleapis.com/auth/calendar.events",
+        });
+
+        // Configuración para la autorización
+        const config = {
+          client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+          scope: "https://www.googleapis.com/auth/calendar.events",
+          immediate: false, // Cambia a true si deseas intentarlo sin interacción del usuario
+        };
+
+        // Llamada a gapi.auth.authorize con un callback
+        gapi.auth.authorize(config, (authResult) => {
+          if (authResult && !authResult.error) {
+            console.log("Usuario autenticado:", authResult);
+          } else {
+            console.error("Error en la autenticación:", authResult.error);
+          }
+        });
+      } catch (error) {
+        console.error("Error al inicializar la API de Google:", error);
+      }
+    });
+  };
+</script>
+
 <style is:global>
   html {
     font-family: system-ui, sans-serif;

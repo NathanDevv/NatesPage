@@ -1,5 +1,9 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
+  "include": [
+    ".astro/types.d.ts",
+    "**/*",
+    "globals.d.ts" // Incluye el archivo de declaraciones globales
+  ],
   "exclude": ["dist"]
 }
