@@ -1,181 +1,115 @@
-import React, { useState, useEffect, useRef } from "react";
-import { authenticate, loadClient, createEvent } from "../utils/googleCalendar";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import React, { useState } from "react";
 
 const AgendarServicio = () => {
-  const [formData, setFormData] = useState({
-    title: "Servicio exterior",
-    description: "",
-    date: "",
-    time: "",
-    address: "",
-  });
+  const [media, setMedia] = useState([
+    { type: "image", url: "/public/exterior.jpeg", model: "Honda CR-V" },
+    {
+      type: "image",
+      url: "/public/exterior2.jpg",
+      model: "Jeep Grand Cherokee SRT",
+    },
+    { type: "image", url: "/public/exterior3.jpg", model: "Jeep Compass" },
+    {
+      type: "image",
+      url: "/public/exterior4.jpg",
+      model: "Chevrolet Camaro LT",
+    },
+    { type: "image", url: "/public/exterior5.jpg", model: "Honda Civic SI" },
+    { type: "video", url: "/public/exterior1.mp4", model: "Jeep Mojave" },
+    { type: "video", url: "/public/exterior2.mp4", model: "Honda CR-V" },
+    { type: "video", url: "/public/exterior3.mp4", model: "BMW 528i" },
+    {
+      type: "video",
+      url: "/public/exterior.mp4",
+      model: "Chevrolet Camaro SS",
+    },
+    { type: "video", url: "/public/exterior5.mp4", model: "Honda CR-V Turbo" },
+  ]);
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isMapsLoaded, setIsMapsLoaded] = useState(false);
-  const autocompleteRef = useRef(null);
-  const [markerPosition, setMarkerPosition] = useState({
-    lat: 31.8664,
-    lng: -116.5969,
-  });
+  const [selectedMedia, setSelectedMedia] = useState(null);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleMediaClick = (item) => {
+    setSelectedMedia(item);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!formData.address) {
-      alert("Por favor selecciona una dirección válida en el mapa.");
-      return;
-    }
-
-    const event = {
-      summary: formData.title,
-      description: formData.description,
-      location: formData.address,
-      start: {
-        dateTime: `${formData.date}T${formData.time}:00`,
-        timeZone: "America/Tijuana",
-      },
-      end: {
-        dateTime: `${formData.date}T${formData.time}:00`,
-        timeZone: "America/Tijuana",
-      },
-    };
-
-    try {
-      if (!isAuthenticated) {
-        await authenticate();
-        setIsAuthenticated(true);
-      }
-
-      await loadClient();
-      const response = await createEvent(event);
-      if (response.status === "confirmed") {
-        alert("Evento creado exitosamente en Google Calendar");
-      } else {
-        alert("Hubo un problema al crear el evento");
-      }
-    } catch (error) {
-      console.error("Error al crear el evento:", error);
-      alert("Ocurrió un error al agendar el servicio");
-    }
+  const closeModal = () => {
+    setSelectedMedia(null);
   };
-
-  useEffect(() => {
-    const loadGoogleMapsScript = () => {
-      if (window.google && window.google.maps) {
-        setIsMapsLoaded(true);
-      } else {
-        const script = document.createElement("script");
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${
-          import.meta.env.VITE_GOOGLE_API_KEY_MAPS
-        }&libraries=places`;
-        script.async = true;
-        script.onload = () => setIsMapsLoaded(true);
-        script.onerror = () => console.error("Error al cargar Google Maps");
-        document.head.appendChild(script);
-      }
-    };
-
-    loadGoogleMapsScript();
-  }, []);
-
-  const handleMapClick = (e) => {
-    const { latLng } = e;
-    const lat = latLng.lat();
-    const lng = latLng.lng();
-    setMarkerPosition({ lat, lng });
-
-    const geocoder = new window.google.maps.Geocoder();
-    geocoder.geocode({ location: { lat, lng } }, (results, status) => {
-      if (status === "OK" && results[0]) {
-        setFormData({
-          ...formData,
-          address: results[0].formatted_address,
-        });
-      }
-    });
-  };
-
-  const center = { lat: 31.8664, lng: -116.5969 };
 
   return (
     <div
-      id="agenda"
-      className="max-w-md p-6 mx-auto bg-white rounded-lg shadow-lg"
+      id="galeria"
+      className="relative p-8 mx-auto bg-white rounded-lg shadow-lg max-w-7xl"
     >
-      <h2 className="mb-4 text-xl font-semibold">Agendar un Servicio</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <select
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-          className="w-full p-3 border border-gray-300 rounded-md"
-          required
+      {/* Imagen de fondo */}
+      <div>
+        <img
+          src="/Servicios.jpg"
+          alt="Background Servicios"
+          className="absolute inset-0 object-cover w-full h-full pointer-events-none opacity-10 z-[-1]"
+        />
+      </div>
+
+      <h2 className="mb-6 text-4xl font-bold text-center text-gray-800">
+        Galería de Trabajos
+      </h2>
+
+      <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        {media.map((item, index) => (
+          <div key={index} className="relative group">
+            {item.type === "image" ? (
+              <img
+                src={item.url}
+                alt={`Trabajo ${index + 1}`}
+                className="object-cover w-full transition transform rounded-lg h-80 group-hover:scale-110 group-hover:shadow-xl"
+                onClick={() => handleMediaClick(item)}
+              />
+            ) : (
+              <video
+                src={item.url}
+                autoPlay
+                loop
+                muted
+                className="object-cover w-full transition transform rounded-lg h-80 group-hover:scale-110 group-hover:shadow-xl"
+                onClick={() => handleMediaClick(item)}
+              />
+            )}
+            <div className="absolute p-2 text-lg font-semibold text-white transition-opacity duration-300 bg-black bg-opacity-50 rounded opacity-0 bottom-4 left-4 group-hover:opacity-100">
+              {item.model}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Modal de visualización */}
+      {selectedMedia && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70"
+          onClick={closeModal}
         >
-          <option value="Servicio exterior">Servicio Exterior</option>
-          <option value="Servicio interior">Servicio Interior</option>
-          <option value="Servicio completo">Servicio Completo</option>
-        </select>
-        <textarea
-          name="description"
-          placeholder="Descripción del servicio"
-          value={formData.description}
-          onChange={handleChange}
-          className="w-full p-3 border border-gray-300 rounded-md"
-          required
-        />
-        <input
-          type="date"
-          name="date"
-          value={formData.date}
-          onChange={handleChange}
-          className="w-full p-3 border border-gray-300 rounded-md"
-          required
-        />
-        <input
-          type="time"
-          name="time"
-          value={formData.time}
-          onChange={handleChange}
-          className="w-full p-3 border border-gray-300 rounded-md"
-          required
-        />
-        <div className="w-full">
-          {isMapsLoaded ? (
-            <LoadScript
-              googleMapsApiKey={import.meta.env.VITE_GOOGLE_API_KEY_MAPS}
+          <div className="relative max-w-6xl max-h-full overflow-hidden transition-all duration-300 ease-in-out transform bg-white rounded-lg">
+            {selectedMedia.type === "image" ? (
+              <img
+                src={selectedMedia.url}
+                alt="Media"
+                className="object-cover w-full h-96"
+              />
+            ) : (
+              <video
+                src={selectedMedia.url}
+                controls
+                className="object-cover w-full h-96"
+              />
+            )}
+            <button
+              onClick={closeModal}
+              className="absolute p-3 text-white bg-gray-800 rounded-full top-4 right-4 bg-opacity-70 hover:bg-gray-600"
             >
-              <GoogleMap
-                mapContainerStyle={{ height: "400px", width: "100%" }}
-                center={center}
-                zoom={13}
-                onClick={handleMapClick}
-              >
-                <Marker position={markerPosition} />
-              </GoogleMap>
-            </LoadScript>
-          ) : (
-            <div>Cargando mapa...</div>
-          )}
+              X
+            </button>
+          </div>
         </div>
-        <input
-          type="text"
-          value={formData.address}
-          disabled
-          placeholder="Dirección seleccionada"
-          className="w-full p-3 border border-gray-300 rounded-md"
-        />
-        <button
-          type="submit"
-          className="w-full p-3 text-white bg-blue-500 rounded-md"
-        >
-          Agendar
-        </button>
-      </form>
+      )}
     </div>
   );
 };

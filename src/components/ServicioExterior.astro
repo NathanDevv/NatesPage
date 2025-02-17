@@ -32,13 +32,19 @@ const videos = [
   },
 ];
 
-const description = `
-Mantén tu vehículo impecable con nuestro servicio de lavado exterior a domicilio. Nos encargamos de la limpieza profunda de la carrocería, llantas y detalles exteriores, eliminando suciedad, polvo y residuos sin comprometer la pintura ni las superficies de tu coche.
+const description = `Mantén tu vehículo impecable con nuestro servicio de lavado exterior a domicilio.
 
-Nuestro servicio tiene un costo que varía entre $280 y $350 MXN, dependiendo del estado y tamaño del vehículo, y el tiempo estimado de trabajo es de una hora a una hora y media. Disfruta de la comodidad de tener tu auto limpio sin tener que salir de casa.
+Este servicio incluye:
 
-¡Haz tu cita hoy mismo y dale a tu vehículo la atención que se merece!
-`;
+- Lavado profundo de la carrocería con productos de calidad para preservar la pintura.
+- Limpieza de rines y llantas para eliminar suciedad acumulada.
+- Eliminación de contaminantes superficiales como polvo, residuos y manchas de agua.
+- Aplicación de cera de alto rendimiento para mejorar la protección y el brillo de la pintura.
+- Secado a mano.
+
+El costo varía entre $250 y $350 MXN, dependiendo del tamaño y el estado del vehículo. El tiempo estimado de trabajo es de 45 minutos a 1 hora, según las necesidades del coche.
+
+¡Deja tu auto como nuevo sin salir de casa! Contáctanos para agendar tu cita y disfrutar de un vehículo completamente limpio.`;
 ---
 
 <Section title={title} subtitle={subtitle} color="white" id="servicioExterior">
@@ -55,7 +61,7 @@ Nuestro servicio tiene un costo que varía entre $280 y $350 MXN, dependiendo de
         >
           {
             videos.map((video, index) => (
-              <div class="relative flex-shrink-0 w-full">
+              <div class="relative flex-shrink-0 w-full" data-key={index}>
                 <video
                   src={video.src}
                   class="object-cover w-full h-full"
@@ -89,7 +95,9 @@ Nuestro servicio tiene un costo que varía entre $280 y $350 MXN, dependiendo de
 
     <!-- Descripción del servicio -->
     <div class="w-full text-center md:w-3/4 lg:w-1/2">
-      <p class="text-lg text-gray-300">{description}</p>
+      <p class="text-lg leading-relaxed text-gray-300 whitespace-pre-line">
+        {description}
+      </p>
     </div>
   </div>
 
@@ -104,7 +112,7 @@ Nuestro servicio tiene un costo que varía entre $280 y $350 MXN, dependiendo de
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const videos = document.querySelector("#carousel") as HTMLElement;
+    const videos = document.querySelector("#carousel");
     const prevButton = document.querySelector("#prev");
     const nextButton = document.querySelector("#next");
 

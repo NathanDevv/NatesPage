@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { SignIn, SignOut } from "auth-astro/components";
 ---
 
 <Layout title="Iniciar sesión">
@@ -107,6 +108,7 @@ import Layout from "../layouts/Layout.astro";
             >¿No tienes cuenta? Regístrate</a
           >
         </div>
+        <SignIn provider="google">Iniciar con Google</SignIn>
       </form>
     </div>
   </div>

@@ -37,12 +37,12 @@ const description = `Brinda a tu vehículo una limpieza completa por dentro con 
 
 Este servicio incluye:
 
-Retiro y limpieza de asientos (sin profundizar en tapicería especializada).
-Limpieza de tablero, puertas, marcos de puertas y otras superficies interiores.
-Aspirado de alfombrillas, asientos y otras áreas del interior.
-Limpieza profunda de paneles interiores.
+- Retiro y limpieza de asientos (sin profundizar en tapicería especializada).
+- Limpieza de tablero, puertas, marcos de puertas y otras superficies interiores.
+- Aspirado de alfombrillas, asientos y otras áreas del interior.
+- Limpieza profunda de paneles interiores.
 
-El costo varía entre $800 y $1,000 MXN, dependiendo del tamaño y el estado del vehículo. El tiempo estimado de trabajo es de 2 a 3 horas, según las necesidades del coche.
+El costo varía entre $600 y $800 MXN, dependiendo del tamaño y el estado del vehículo. El tiempo estimado de trabajo es de 2 a 3 horas, según las necesidades del coche.
 
 ¡Deja tu auto como nuevo sin salir de casa! Contáctanos para agendar tu cita y disfrutar de un vehículo completamente limpio.`;
 ---
@@ -51,7 +51,6 @@ El costo varía entre $800 y $1,000 MXN, dependiendo del tamaño y el estado del
   <div slot="body" class="flex flex-col items-center gap-8 mt-8">
     <!-- Carrusel de Videos -->
     <div class="flex justify-center w-full md:w-2/3 lg:w-1/2">
-      <!-- Ajustar el tamaño de los videos aquí -->
       <div
         class="relative w-full max-w-xs overflow-hidden rounded-lg shadow-lg sm:max-w-sm lg:max-w-md"
       >
@@ -61,7 +60,7 @@ El costo varía entre $800 y $1,000 MXN, dependiendo del tamaño y el estado del
         >
           {
             videos.map((video, index) => (
-              <div class="relative flex-shrink-0 w-full">
+              <div class="relative flex-shrink-0 w-full" {...{ key: index }}>
                 <video
                   src={video.src}
                   class="object-cover w-full h-full"
@@ -80,22 +79,20 @@ El costo varía entre $800 y $1,000 MXN, dependiendo del tamaño y el estado del
           id="prevInterior"
           aria-label="Video anterior"
           class="absolute z-10 px-3 py-2 text-white -translate-y-1/2 bg-black bg-opacity-50 rounded-full top-1/2 left-4 hover:bg-opacity-75"
+          >&larr;</button
         >
-          &larr;
-        </button>
         <button
           id="nextInterior"
           aria-label="Video siguiente"
           class="absolute z-10 px-3 py-2 text-white -translate-y-1/2 bg-black bg-opacity-50 rounded-full top-1/2 right-4 hover:bg-opacity-75"
+          >&rarr;</button
         >
-          &rarr;
-        </button>
       </div>
     </div>
 
     <!-- Descripción del servicio -->
     <div class="w-full text-center md:w-3/4 lg:w-1/2">
-      <p class="text-lg text-gray-300">{description}</p>
+      <p class="text-lg text-gray-300 whitespace-pre-line">{description}</p>
     </div>
   </div>
 
@@ -109,17 +106,16 @@ El costo varía entre $800 y $1,000 MXN, dependiendo del tamaño y el estado del
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const videos = document.querySelector("#carouselInterior") as HTMLElement;
+    const videos = document.querySelector("#carouselInterior");
     const prevButton = document.querySelector("#prevInterior");
     const nextButton = document.querySelector("#nextInterior");
 
     let currentIndex = 0;
 
     function updateCarousel() {
-      const offset = currentIndex * -100; // Mueve el carrusel en base al índice
+      const offset = currentIndex * -100;
       videos.style.transform = `translateX(${offset}%)`;
 
-      // Pausar los videos fuera de vista
       Array.from(videos.children).forEach((video, index) => {
         const videoElement = video.querySelector("video");
         if (videoElement) {
@@ -147,7 +143,6 @@ El costo varía entre $800 y $1,000 MXN, dependiendo del tamaño y el estado del
       });
     }
 
-    // Inicializa el carrusel
     updateCarousel();
   });
 </script>

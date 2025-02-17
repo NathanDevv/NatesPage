@@ -2,8 +2,14 @@
   "extends": "astro/tsconfigs/strict",
   "include": [
     ".astro/types.d.ts",
-    "**/*",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.json",
+    "**/*.astro",
+    "!src/components/AgendarServicio.astro",
     "globals.d.ts" // Incluye el archivo de declaraciones globales
   ],
-  "exclude": ["dist"]
+  "exclude": ["dist", "src/components"]
 }

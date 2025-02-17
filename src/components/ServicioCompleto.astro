@@ -4,7 +4,6 @@ import Section from "./Section.astro";
 const title = "Servicio Completo";
 const subtitle = "Revive la belleza de tu auto con nuestro servicio completo";
 
-// Videos del carrusel
 const videos = [
   {
     src: "../public/completo1.mp4",
@@ -30,99 +29,91 @@ const videos = [
 
 const description = `En Nate’s Detailing, ofrecemos el servicio más completo para transformar tu auto y devolverle su mejor versión. Este paquete incluye:
 
-Exterior
-Lavado detallado con shampoo cerámico para una limpieza profunda y protección adicional de la pintura.
-Limpieza exhaustiva de llantas y rines, eliminando suciedad y residuos de hierro para un acabado impecable.
-Aplicación de cera en pasta con efecto hidrofóbico, que protege la pintura y proporciona un brillo duradero.
-Revitalización y acondicionamiento de plásticos exteriores, devolviendo su color y textura original.
-Interior
-Limpieza a profundidad del habitáculo, eliminando polvo y suciedad de cada rincón.
-Aspirado completo, incluyendo áreas difíciles, y eliminación de pelos de mascota.
-Limpieza y acondicionamiento de asientos, ya sean de tela o piel, para un acabado fresco y renovado.
-Hidratación de plásticos y superficies interiores para un aspecto cuidado.
-Eliminación de olores y tratamiento con vapor para una frescura insuperable.
-Removemos los asientos para garantizar una limpieza detallada en todas las zonas.
-Detalles del Servicio
-Costo: $1,800 - $2,200 MXN (varía según el estado y tamaño del vehículo).
-Duración: 5 - 6 horas.
-Llevamos nuestra experiencia directamente a la puerta de tu casa para que no te preocupes por nada. Nate’s Detailing, donde cada detalle cuenta.
+Exterior:
+- Lavado detallado con shampoo cerámico para limpieza profunda y protección adicional.
+- Limpieza exhaustiva de llantas y rines, eliminando suciedad y residuos de hierro.
+- Aplicación de cera en pasta con efecto hidrofóbico para protección y brillo duradero.
+- Revitalización y acondicionamiento de plásticos exteriores.
 
-📞 ¡Agenda tu cita hoy y haz que tu auto luzca como nuevo!`;
+Interior:
+- Limpieza profunda del habitáculo, eliminando polvo y suciedad.
+- Aspirado completo, incluyendo áreas difíciles y eliminación de pelos de mascota.
+- Limpieza y acondicionamiento de asientos (tela o piel).
+- Hidratación de plásticos y superficies interiores.
+- Eliminación de olores y tratamiento con vapor.
+- Removemos los asientos para garantizar una limpieza detallada.
+
+Detalles del Servicio:
+- Costo: $1,400 - $1,600 MXN (según estado y tamaño del vehículo).
+- Duración: 4 - 5 horas.`;
 ---
 
 <Section title={title} subtitle={subtitle} color="white" id="servicioCompleto">
   <div slot="body" class="flex flex-col items-center gap-8 mt-8">
     <!-- Carrusel de Videos -->
-    <div class="flex justify-center w-full md:w-2/3 lg:w-1/2">
-      <!-- Ajustar el tamaño de los videos aquí -->
+    <div class="relative w-full max-w-lg overflow-hidden rounded-lg shadow-lg">
       <div
-        class="relative w-full max-w-xs overflow-hidden rounded-lg shadow-lg sm:max-w-sm lg:max-w-md"
+        id="carouselCompleto"
+        class="flex transition-transform duration-500 ease-in-out"
       >
-        <div
-          id="carouselCompleto"
-          class="relative z-0 flex transition-transform duration-500 ease-in-out"
-        >
-          {
-            videos.map((video, index) => (
-              <div class="relative flex-shrink-0 w-full">
-                <video
-                  src={video.src}
-                  class="object-cover w-full h-full"
-                  loop
-                  autoplay
-                  muted
-                  preload="metadata"
-                  playsinline
-                />
-              </div>
-            ))
-          }
-        </div>
-        <!-- Controles -->
-        <button
-          id="prevCompleto"
-          aria-label="Video anterior"
-          class="absolute z-10 px-3 py-2 text-white -translate-y-1/2 bg-black bg-opacity-50 rounded-full top-1/2 left-4 hover:bg-opacity-75"
-        >
-          &larr;
-        </button>
-        <button
-          id="nextCompleto"
-          aria-label="Video siguiente"
-          class="absolute z-10 px-3 py-2 text-white -translate-y-1/2 bg-black bg-opacity-50 rounded-full top-1/2 right-4 hover:bg-opacity-75"
-        >
-          &rarr;
-        </button>
+        {
+          videos.map((video, index) => (
+            <div class="flex-shrink-0 w-full" data-key={index}>
+              <video
+                src={video.src}
+                class="object-cover w-full h-full"
+                loop
+                autoplay
+                muted
+                preload="metadata"
+                playsinline
+              />
+            </div>
+          ))
+        }
       </div>
+      <!-- Controles -->
+      <button
+        id="prevCompleto"
+        aria-label="Anterior"
+        class="absolute p-2 text-white transform -translate-y-1/2 bg-black bg-opacity-50 rounded-full left-4 top-1/2 hover:bg-opacity-75"
+      >
+        &larr;
+      </button>
+      <button
+        id="nextCompleto"
+        aria-label="Siguiente"
+        class="absolute p-2 text-white transform -translate-y-1/2 bg-black bg-opacity-50 rounded-full right-4 top-1/2 hover:bg-opacity-75"
+      >
+        &rarr;
+      </button>
     </div>
 
     <!-- Descripción del servicio -->
     <div class="w-full text-center md:w-3/4 lg:w-1/2">
-      <p class="text-lg text-gray-300">{description}</p>
+      <p class="text-lg leading-relaxed text-gray-300 whitespace-pre-line">
+        {description}
+      </p>
     </div>
   </div>
-
   <img
     slot="background"
     src="../public/Servicios.jpg"
     alt="Background Servicios"
-    class="absolute inset-0 object-cover w-full h-full pointer-events-none opacity-10 z-[-1]"
+    class="absolute inset-0 object-cover w-full h-full pointer-events-none opacity-10"
   />
 </Section>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const videos = document.querySelector("#carouselCompleto") as HTMLElement;
+    const videos = document.querySelector("#carouselCompleto");
     const prevButton = document.querySelector("#prevCompleto");
     const nextButton = document.querySelector("#nextCompleto");
-
     let currentIndex = 0;
 
     function updateCarousel() {
-      const offset = currentIndex * -100; // Mueve el carrusel en base al índice
+      const offset = currentIndex * -100;
       videos.style.transform = `translateX(${offset}%)`;
-
-      // Pausar los videos fuera de vista
       Array.from(videos.children).forEach((video, index) => {
         const videoElement = video.querySelector("video");
         if (videoElement) {
@@ -135,22 +126,17 @@ Llevamos nuestra experiencia directamente a la puerta de tu casa para que no te 
       });
     }
 
-    if (prevButton) {
-      prevButton.addEventListener("click", () => {
-        currentIndex =
-          (currentIndex - 1 + videos.children.length) % videos.children.length;
-        updateCarousel();
-      });
-    }
+    prevButton.addEventListener("click", () => {
+      currentIndex =
+        (currentIndex - 1 + videos.children.length) % videos.children.length;
+      updateCarousel();
+    });
 
-    if (nextButton) {
-      nextButton.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % videos.children.length;
-        updateCarousel();
-      });
-    }
+    nextButton.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % videos.children.length;
+      updateCarousel();
+    });
 
-    // Inicializa el carrusel
     updateCarousel();
   });
 </script>

@@ -1,0 +1,88 @@
+---
+import Section from "./Section.astro";
+
+const title = "Contacto";
+const subtitle =
+  "Conéctate con nosotros a través de nuestras redes o llámanos directamente.";
+
+const contacts = [
+  {
+    name: "Facebook",
+    url: "https://www.facebook.com/profile.php?id=61565068858525",
+    icon: "facebook",
+  },
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com/nate.sdetailing/",
+    icon: "instagram",
+  },
+  {
+    name: "TikTok",
+    url: "https://www.tiktok.com/@nate.sdetailing",
+    icon: "tiktok",
+  },
+  {
+    name: "Linktree",
+    url: "https://linktr.ee/nates.detailing?utm_source=linktree_admin_share",
+    icon: "tree",
+  },
+  {
+    name: "WhatsApp",
+    url: "https://wa.me/526463428376",
+    icon: "whatsapp",
+  },
+];
+---
+
+<Section title={title} subtitle={subtitle} color="white" id="contacto">
+  <section class="relative bg-[#13151a] text-white py-16 overflow-hidden">
+    <div slot="body" class="relative z-20 px-8 mx-auto text-center max-w-7xl">
+      <h2 class="text-4xl font-bold">{title}</h2>
+      <p class="mt-4 text-lg text-gray-300">{subtitle}</p>
+    </div>
+  </section>
+
+  <!-- Contenedor de Contacto en lista -->
+  <div
+    slot="body"
+    class="relative z-20 flex flex-col items-center gap-4 px-6 mt-8"
+  >
+    {
+      contacts.map((contact, index) => (
+        <a
+          href={contact.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center w-64 gap-4 p-4 text-black transition-all duration-300 transform translate-y-4 bg-white border border-gray-300 rounded-lg shadow-lg opacity-0 contact-item hover:scale-105 hover:bg-gray-200"
+          data-index={index}
+        >
+          <img
+            src={`/icons/${contact.icon}.svg`}
+            alt={contact.name}
+            class="w-6 h-6"
+          />
+          <span class="text-lg font-semibold">{contact.name}</span>
+        </a>
+      ))
+    }
+  </div>
+
+  <!-- Imagen de fondo -->
+  <img
+    slot="background"
+    src="/Servicios.jpg"
+    alt="Background Contacto"
+    class="absolute inset-0 z-0 object-cover w-full h-full pointer-events-none opacity-10"
+  />
+</Section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const items = document.querySelectorAll(".contact-item");
+    items.forEach((item, index) => {
+      setTimeout(() => {
+        item.classList.remove("opacity-0", "translate-y-4");
+      }, index * 150);
+    });
+  });
+</script>
