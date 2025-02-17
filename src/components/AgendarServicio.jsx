@@ -2,28 +2,28 @@ import React, { useState } from "react";
 
 const AgendarServicio = () => {
   const [media, setMedia] = useState([
-    { type: "image", url: "/public/exterior.jpeg", model: "Honda CR-V" },
+    { type: "image", url: "/exterior.jpeg", model: "Honda CR-V" },
     {
       type: "image",
-      url: "/public/exterior2.jpg",
+      url: "/exterior2.jpg",
       model: "Jeep Grand Cherokee SRT",
     },
-    { type: "image", url: "/public/exterior3.jpg", model: "Jeep Compass" },
+    { type: "image", url: "/exterior3.jpg", model: "Jeep Compass" },
     {
       type: "image",
-      url: "/public/exterior4.jpg",
+      url: "/exterior4.jpg",
       model: "Chevrolet Camaro LT",
     },
-    { type: "image", url: "/public/exterior5.jpg", model: "Honda Civic SI" },
-    { type: "video", url: "/public/exterior1.mp4", model: "Jeep Mojave" },
-    { type: "video", url: "/public/exterior2.mp4", model: "Honda CR-V" },
-    { type: "video", url: "/public/exterior3.mp4", model: "BMW 528i" },
+    { type: "image", url: "/exterior5.jpg", model: "Honda Civic SI" },
+    { type: "video", url: "/exterior1.mp4", model: "Jeep Mojave" },
+    { type: "video", url: "/exterior2.mp4", model: "Honda CR-V" },
+    { type: "video", url: "/exterior3.mp4", model: "BMW 528i" },
     {
       type: "video",
-      url: "/public/exterior.mp4",
+      url: "/exterior.mp4",
       model: "Chevrolet Camaro SS",
     },
-    { type: "video", url: "/public/exterior5.mp4", model: "Honda CR-V Turbo" },
+    { type: "video", url: "/exterior5.mp4", model: "Honda CR-V Turbo" },
   ]);
 
   const [selectedMedia, setSelectedMedia] = useState(null);
