@@ -67,10 +67,11 @@ const AgendarServicio = () => {
             ) : (
               <video
                 src={item.url}
-                autoPlay
                 loop
                 muted
                 className="object-cover w-full transition transform rounded-lg h-80 group-hover:scale-110 group-hover:shadow-xl"
+                onMouseEnter={(e) => e.target.play()}
+                onMouseLeave={(e) => e.target.pause()}
                 onClick={() => handleMediaClick(item)}
               />
             )}
@@ -88,19 +89,22 @@ const AgendarServicio = () => {
           onClick={closeModal}
         >
           <div className="relative max-w-6xl max-h-full overflow-hidden transition-all duration-300 ease-in-out transform bg-white rounded-lg">
-            {selectedMedia.type === "image" ? (
+            {selectedMedia.type === "video" ? (
+              <video
+                src={selectedMedia.url}
+                controls
+                autoPlay
+                className="object-cover w-full h-96"
+                onClick={(e) => e.stopPropagation()} // Evita que se cierre al hacer clic en el video
+              />
+            ) : (
               <img
                 src={selectedMedia.url}
                 alt="Media"
                 className="object-cover w-full h-96"
               />
-            ) : (
-              <video
-                src={selectedMedia.url}
-                controls
-                className="object-cover w-full h-96"
-              />
             )}
+
             <button
               onClick={closeModal}
               className="absolute p-3 text-white bg-gray-800 rounded-full top-4 right-4 bg-opacity-70 hover:bg-gray-600"
