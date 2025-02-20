@@ -66,6 +66,8 @@ const AgendarServicio = () => {
                 loop
                 muted
                 autoPlay
+                playsInline
+                preload="metadata"
                 className="object-cover w-full transition transform rounded-lg h-80 group-hover:scale-110 group-hover:shadow-xl"
                 onMouseEnter={(e) => e.target.play()}
                 onMouseLeave={(e) => e.target.pause()}
