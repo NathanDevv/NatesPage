@@ -6,7 +6,7 @@ const subtitle = "Elige el servicio que mejor se adapte a tus necesidades";
 
 const prices = [
   {
-    name: "Lavado Exterior",
+    name: ["Servicio Exterior", "Auto Chico y Auto Grande"],
     price: "$250 - $300 MXN",
     details: [
       "Duración: 45 minutos a 1 hora",
@@ -17,9 +17,10 @@ const prices = [
       "Hidratación de plásticos",
       "Secado a mano",
     ],
+    id: "servicioExterior",
   },
   {
-    name: "Servicio Interior",
+    name: ["Servicio Interior", "Auto Chico y Auto Grande"],
     price: "$600 - $800 MXN",
     details: [
       "Duración: 2 a 3 horas",
@@ -29,10 +30,11 @@ const prices = [
       "Eliminación de malos olores sutil",
       "Hidratación de plásticos",
     ],
+    id: "servicioInterior",
   },
   {
-    name: "Detallado Total",
-    price: "$1,400 - $1,600 MXN",
+    name: ["Detallado Total", "Auto Chico y Auto Grande"],
+    price: ["$1,400 - $1,600 MXN"],
     details: [
       "Duración: 3 a 4 horas",
       "Servicio Exterior",
@@ -43,9 +45,10 @@ const prices = [
       "Tratamiento Especial para Cuero",
       "Desinfección por Vapor",
     ],
+    id: "servicioCompleto",
   },
   {
-    name: "Servicio de Asientos",
+    name: ["Servicio de Asientos", "Auto Chico y Auto Grande"],
     price: "$800 - $1,000 MXN",
     details: [
       "Duración: 2 a 3 horas",
@@ -56,6 +59,7 @@ const prices = [
       "Desinfección por Vapor",
       "Tratamiento Especial para Cuero",
     ],
+    id: "servicioInterior",
   },
   {
     name: ["¡PROMOCIÓN!", "Febrero y Marzo"],
@@ -65,6 +69,7 @@ const prices = [
       "Servicio Exterior",
       "Servicio Interior",
     ],
+    id: "servicioExterior",
   },
 ];
 ---
@@ -86,7 +91,10 @@ const prices = [
   >
     {
       prices.map((service) => (
-        <div class="max-w-sm p-6 text-center text-white transition-all duration-500 translate-y-6 bg-gray-900 border border-gray-700 shadow-lg opacity-0 service-card rounded-2xl hover:scale-105">
+        <a
+          href={`#${service.id}`}
+          class="block max-w-sm p-6 text-center text-white transition-all duration-500 translate-y-6 bg-gray-900 border border-gray-700 shadow-lg opacity-0 service-card rounded-2xl hover:scale-105 hover:bg-gray-800"
+        >
           <h3 class="text-xl font-semibold">
             {Array.isArray(service.name) ? (
               <>
@@ -105,7 +113,7 @@ const prices = [
               <li>{detail}</li>
             ))}
           </ul>
-        </div>
+        </a>
       ))
     }
   </div>
@@ -122,7 +130,7 @@ const prices = [
       class="inline-flex items-center justify-center px-12 py-2 text-sm font-medium text-white transition-all rounded bg-cyan-700 hover:bg-slate-400 hover:text-black hover:scale-105"
       href="#contacto"
     >
-      Contacto
+      Agenda tu Cita
     </a>
   </section>
 </Section>
