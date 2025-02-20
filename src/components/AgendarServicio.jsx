@@ -2,27 +2,23 @@ import React, { useState } from "react";
 
 const AgendarServicio = () => {
   const [media, setMedia] = useState([
-    { type: "image", url: "/exterior.jpeg", model: "Honda CR-V" },
+    { type: "image", url: "/Exterior.jpeg", model: "Honda CR-V" },
     {
       type: "image",
-      url: "/exterior2.jpg",
+      url: "/Exterior2.jpg",
       model: "Jeep Grand Cherokee SRT",
     },
-    { type: "image", url: "/exterior3.jpg", model: "Jeep Compass" },
+    { type: "image", url: "/Exterior3.jpg", model: "Jeep Compass" },
     {
       type: "image",
-      url: "/exterior4.jpg",
+      url: "/Exterior4.jpg",
       model: "Chevrolet Camaro LT",
     },
-    { type: "image", url: "/exterior5.jpg", model: "Honda Civic SI" },
+    { type: "image", url: "/Exterior5.jpg", model: "Honda Civic SI" },
     { type: "video", url: "/exterior1.mp4", model: "Jeep Mojave" },
     { type: "video", url: "/exterior2.mp4", model: "Honda CR-V" },
     { type: "video", url: "/exterior3.mp4", model: "BMW 528i" },
-    {
-      type: "video",
-      url: "/exterior.mp4",
-      model: "Chevrolet Camaro SS",
-    },
+    { type: "video", url: "/Exterior.mp4", model: "Chevrolet Camaro SS" },
     { type: "video", url: "/exterior5.mp4", model: "Honda CR-V Turbo" },
   ]);
 
@@ -69,6 +65,7 @@ const AgendarServicio = () => {
                 src={item.url}
                 loop
                 muted
+                autoPlay
                 className="object-cover w-full transition transform rounded-lg h-80 group-hover:scale-110 group-hover:shadow-xl"
                 onMouseEnter={(e) => e.target.play()}
                 onMouseLeave={(e) => e.target.pause()}
