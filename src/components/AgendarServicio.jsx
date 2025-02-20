@@ -91,11 +91,12 @@ const AgendarServicio = () => {
           <div className="relative max-w-6xl max-h-full overflow-hidden transition-all duration-300 ease-in-out transform bg-white rounded-lg">
             {selectedMedia.type === "video" ? (
               <video
-                src={selectedMedia.url}
-                controls
+                src={item.url}
                 autoPlay
-                className="object-cover w-full h-96"
-                onClick={(e) => e.stopPropagation()} // Evita que se cierre al hacer clic en el video
+                loop
+                muted
+                className="object-cover w-full transition transform rounded-lg h-80 group-hover:scale-110 group-hover:shadow-xl"
+                onClick={() => handleMediaClick(item)}
               />
             ) : (
               <img
