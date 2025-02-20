@@ -66,7 +66,7 @@ const AgendarServicio = () => {
                 loop
                 muted
                 autoPlay
-                className="object-cover w-full h-40 transition transform rounded-lg sm:h-48 md:h-80 max-h-40 sm:max-h-48 md:max-h-none md:group-hover:scale-110 md:group-hover:shadow-xl"
+                className="object-cover w-full transition transform rounded-lg h-80 group-hover:scale-110 group-hover:shadow-xl"
                 onMouseEnter={(e) => e.target.play()}
                 onMouseLeave={(e) => e.target.pause()}
                 onClick={() => handleMediaClick(item)}
@@ -92,6 +92,7 @@ const AgendarServicio = () => {
                 autoPlay
                 loop
                 muted
+                playsInline
                 className="object-cover w-full transition transform rounded-lg h-80 group-hover:scale-110 group-hover:shadow-xl"
                 onClick={() => handleMediaClick(item)}
               />
